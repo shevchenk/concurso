@@ -93,13 +93,13 @@ Vue.config.debug = true;
                     };
                     this.$http.get('carreras', request, function (response) {
                         app.carreras=response.carreras;
-                        this.htmlListarSlct(app.carreras,"carrera","multiple");
+                        this.htmlListarSlct(app.carreras,"carrera","multiplegrupo");
                     });
                 },
                 mostrarCursos: function() {
                     app.alumno.carrera=$("#carrera").val();
                     var request = {
-                        carreras: app.alumno.carrera,
+                        carreras: $("#carrera").val(),
                     };
                     this.$http.get('cursos',request, function (response) {
                         app.cursos=response.cursos;
@@ -119,7 +119,7 @@ Vue.config.debug = true;
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
                 var html="";var disabled=''; var grupo='';
-                    if(tipo!="multiple"){
+                    if(tipo=="simple"){
                         html+= "<option value=''>.::Seleccione::.</option>";
                     }
 
@@ -166,14 +166,24 @@ Vue.config.debug = true;
                         else*/
                         if( tipo=='multiplegrupo' ){
                             if(grupo!=data.grupo){
-                                html+="<optgroup label='"+data.grupo+"'></optgroup>"
+                                if(html!=''){
+                                    html+="</optgroup>";
+                                }
+                                html+="<optgroup label='"+data.grupo+"'>";
                             }
+                            html += "<option value=\"" + data.id + "\" data-grupo_id='"+data.grupo_id+"'>" + data.nombre + "</option>";
                         }
                         else{
                             html += "<option "+rel+rel2+rel3+x+y+direccion+" value=\"" + data.id + "\" "+disabled+">" + data.nombre + rel4 + "</option>";
                         }
                         
                     });
+
+                    if( tipo=='multiplegrupo' ){
+                        html+="</optgroup>";
+                        tipo='multiple';
+                    }
+                    
                     $("#"+slct).html(html);
                     $("#"+slct).multiselect('destroy');
                     this.slctGlobalHtml(slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones);
