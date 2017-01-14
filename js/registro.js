@@ -2,7 +2,7 @@ Vue.config.debug = true;
 
         var app = new Vue({
             http: {
-                root: '/ajax',
+                root: 'http://cpdtelesup.com/colegio/public/concurso',
             },
             el: '#app',
             data: {
@@ -25,7 +25,7 @@ Vue.config.debug = true;
             },
             methods: {
                 mostrarCiudades: function() {
-                    this.$http.get('ciudades.php', function (response) {
+                    this.$http.get('sedes', function (response) {
                         app.ciudades=response;
                     });
                 },
