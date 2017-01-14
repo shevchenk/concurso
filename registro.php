@@ -13,7 +13,7 @@
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+<div class="wrapper" id='app'>
 
   <header class="main-header">
     <nav class="navbar navbar-static-top">
@@ -335,6 +335,59 @@
       </div>
       </section>
 
+
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - DOCTOR 1</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="ciudad">ciudad:</label>
+                    <select v-model="alumno.ciudad" @change="cambiarCiudad" class="form-control" id="ciudad" nombre="ciudad" placeholder="Ingrese ciudad">
+                        <option v-for="(key, val) in ciudades" v-bind:value="key">
+                          {{ val }}
+                        </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="carrera">Carreras:</label>
+                    <select v-model="alumno.carrera" @change="cambiarCarrera" class="form-control" id="carrera" nombre='carrera' placeholder="Ingrese carrera">
+                        <option v-for="(key, val) in carreras" v-bind:value="key">
+                          {{ val }}
+                        </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="asignatura">asignatura:</label>
+                    <select v-model="alumno.asignatura"  class="form-control" id="asignatura" nombre='asignatura' placeholder="Ingrese asignatura">
+                        <option v-for="(key, val) in asignaturas" v-bind:value="val.id">
+                          {{ val.nombre }}
+                        </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="doctor">Subir Archivo:</label>
+                    <input type="file" id="doctor">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        
+      </div>
+      </section>
+
       <section class="content">
         <div class="row">
         <div class="col-md-6">
@@ -453,5 +506,11 @@
 <script src="plugins/fastclick/fastclick.js"></script>
 <script src="dist/js/app.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
+
+<script src="js/registro.js"></script>
+
+
 </body>
 </html>
