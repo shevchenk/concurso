@@ -434,6 +434,66 @@
           </div>
         </div>
       </section>
+
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <div class="col-md-10">
+                <i class="fa fa-clock-o"></i>
+                <h3 class="box-title">DISPONIBILIDAD DEL DOCENTE - TOTAL HORAS
+                </h3>
+              </div>
+              <div class="col-md-2">
+                <input type="numeric" class="form-control" name="total_horas" value="0" readonly>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <form role="form">
+              <div class="box-body">
+                <div class="form-group">
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Turno</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miercoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                      </tr>
+                      <tr>
+                        <th>Mañana</th>
+                        <td><input type="numeric" class="form-control" name="lunes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="martes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="jueves[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="viernes[]" value="0"></td>
+                      </tr>
+                      <tr>
+                        <th>Tarde</th>
+                        <td><input type="numeric" class="form-control" name="lunes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="martes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="jueves[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="viernes[]" value="0"></td>
+                      </tr>
+                      <tr>
+                        <th>Noche</th>
+                        <td><input type="numeric" class="form-control" name="lunes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="martes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="jueves[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" name="viernes[]" value="0"></td>
+                      </tr>
+
+                    </table>
+                </div>
+              <!-- /.box-body -->
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 
