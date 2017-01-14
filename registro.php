@@ -1,3 +1,8 @@
+<?php
+header('Access-Control-Allow-Origin: *'); 
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE'); 
+header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,6 +99,11 @@
                     <label>Departamento:</label>
                     <select class="form-control" id="slct_departamento" name="slct_departamento" name="slct_departamento">
                       <option value="">.::Seleccione::.</option>
+                    </select>
+                    <select v-model="alumno.departamento" @change="cargarProvincia" class="form-control" id="departamentos" nombre="departamentos" placeholder="Seleccione Departamento">
+                        <option v-for="(key, val) in app.departamentos" v-bind:value="val.id">
+                          {{ val.nombre }}
+                        </option>
                     </select>
                   </div>
                   <div class="form-group">

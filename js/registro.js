@@ -24,6 +24,12 @@ Vue.config.debug = true;
                 },
             },
             methods: {
+                mostrarDepartamentos: function() {
+                    this.$http.get('departamentos', function (response) {
+                        app.departamentos=response.departamentos;
+                        console.log(response);
+                    });
+                },
                 mostrarCiudades: function() {
                     this.$http.get('sedes', function (response) {
                         app.ciudades=response;
@@ -53,5 +59,6 @@ Vue.config.debug = true;
             },
             ready: function(){
                 this.mostrarCiudades();
+                this.mostrarDepartamentos();
             },
         });
