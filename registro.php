@@ -15,6 +15,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -97,24 +98,22 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   </div>
                   <div class="form-group">
                     <label>Departamento:</label>
-                    <select class="form-control" id="slct_departamento" name="slct_departamento" name="slct_departamento">
+                    <br>
+                    <select v-model="alumno.departamento" onchange="app.mostrarProvincias()" class="form-control col-md-12" id="departamento" nombre="departamento" placeholder="Seleccione Departamento">
                       <option value="">.::Seleccione::.</option>
-                    </select>
-                    <select v-model="alumno.departamento" @change="cargarProvincia" class="form-control" id="departamentos" nombre="departamentos" placeholder="Seleccione Departamento">
-                        <option v-for="(key, val) in app.departamentos" v-bind:value="val.id">
-                          {{ val.nombre }}
-                        </option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Provincia:</label>
-                    <select class="form-control" id="slct_provincia" name="slct_provincia" name="slct_provincia">
+                    <br>
+                    <select v-model="alumno.provincia" onchange="app.mostrarDistritos()" class="form-control" id="provincia" nombre="provincia" placeholder="Seleccione Provincia">
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Distrito:</label>
-                    <select class="form-control" id="slct_distrito" name="slct_distrito" name="slct_distrito">
+                    <br>
+                    <select v-model="alumno.distrito" class="form-control col-md-12" id="distrito" nombre="distrito" placeholder="Seleccione Distrito">
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
@@ -247,8 +246,8 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <div class="form-group">
                     <label for="ciudad">Sede:</label>
                     <select v-model="alumno.ciudad" @change="cambiarCiudad" class="form-control" id="ciudad" nombre="ciudad" placeholder="Ingrese ciudad">
-                        <option v-for="(key, val) in ciudades" v-bind:value="key">
-                          {{ val }}
+                        <option v-for="(key, val) in ciudades" v-bind:value="val.id">
+                          {{ val.nombre }}
                         </option>
                     </select>
                   </div>
@@ -435,7 +434,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
 <script src="dist/js/demo.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
-
+<script src="plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
 <script src="js/registro.js"></script>
 
 
