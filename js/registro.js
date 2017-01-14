@@ -54,6 +54,41 @@ Vue.config.debug = true;
                 removeExperiencia:function(id){
                     app.experiencias.splice( id, 1 );
                 },
+                onCV: function(e) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                      return;
+
+                    var image = new Image();
+                    var reader = new FileReader();
+                    reader.onload = (e) => {
+                        app.alumno.cv = e.target.result;
+                    };
+                    reader.readAsDataURL(files[0]);
+                },
+                onGrado: function(e) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                      return;
+                    var image = new Image();
+                    var reader = new FileReader();
+                    reader.onload = (e) => {
+                        app.alumno.grado = e.target.result;
+                    };
+                    reader.readAsDataURL(files[0]);
+                },
+                onRevista: function(e) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                      return;
+                    var image = new Image();
+                    var reader = new FileReader();
+                    reader.onload = (e) => {
+                        app.alumno.revista = e.target.result;
+                    };
+                    reader.readAsDataURL(files[0]);
+                },
+
                 mostrarDepartamentos: function() {
                     this.$http.get('departamentos', function (response) {
                         app.departamentos=response.departamentos;
