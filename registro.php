@@ -135,12 +135,13 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
             <div class="box-header with-border">
               <i class="fa fa-graduation-cap"></i>
               <h3 class="box-title">DATOS ACADÉMICOS
-                <a class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
+                <a @click="addDatos" class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
               </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-hover table-bordered">
+                <thead>
                 <tr>
                   <th class="col-md-2" style="text-align:center;">Tipo Grado</th>
                   <th class="col-md-3" style="text-align:center;">Universidad</th>
@@ -149,33 +150,37 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <th class="col-md-1" style="text-align:center;">Subir Archivo</th>
                   <th class="col-md-1" style="text-align:center;">[]</th>
                 </tr>
-                <tr>
-                  <td>
-                    <select name="slct_tipo_grado">
-                      <option value="">.::Seleccione::.</option>
-                      <option value="1">Pre Grado</option>
-                      <option value="2">Maestro o Magister</option>
-                      <option value="3">Doctor</option>
-                    </select>
-                  </td>
-                  <td>
-                    <textarea class="form-control" id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad"></textarea>
-                  </td>
-                  <td>
-                    <textarea class="form-control" id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional"></textarea>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control fecha" id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
-                  </td>
-                  <td>
-                    <input type="file" id="grado" name="grado[]">
-                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
-                  </td>
-                  <td>
-                    <a class="btn btn-danger btn-sm">
-                      <i class="fa fa-trash fa-lg"></i>
-                    </a>
-                  </td>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in datos_academicos">
+                    <td>
+                        <select name="slct_tipo_grado">
+                          <option value="">.::Seleccione::.</option>
+                          <option value="1">Pre Grado</option>
+                          <option value="2">Maestro o Magister</option>
+                          <option value="3">Doctor</option>
+                        </select>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad"></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control" id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional"></textarea>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control fecha" id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
+                    </td>
+                    <td>
+                        <input type="file" id="grado" name="grado[]">
+                      <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                    </td>
+                    <td>
+                        <a @click="removeDatos(item)" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash fa-lg"></i>
+                        </a>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->

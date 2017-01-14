@@ -1,5 +1,7 @@
 Vue.config.debug = true;
-
+        var ordonner = function (a, b) { 
+        return (a.nom.toUpperCase() > b.nom.toUpperCase())
+      };
         var app = new Vue({
             http: {
                 root: 'http://cpdtelesup.com/colegio/public/concurso',
@@ -25,8 +27,19 @@ Vue.config.debug = true;
                     asignatura:'',
                     sede:'',
                 },
+                datos_academicos:[
+                    {},
+                ],
             },
             methods: {
+                addDatos:function(){
+                    var dato = {id: "Claret", serie:'',tarjeta:'',accion:'',rst:'',nombre: "Marcel"};
+                    app.datos_academicos.push(dato);
+                },
+                removeDatos:function(id){
+                    var index = app.datos_academicos.indexOf(id);
+                    app.datos_academicos.splice(index, 1);
+                },
                 mostrarDepartamentos: function() {
                     this.$http.get('departamentos', function (response) {
                         app.departamentos=response.departamentos;
