@@ -244,27 +244,24 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
               <form role="form">
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="ciudad">Sede:</label>
-                    <select v-model="alumno.ciudad" @change="cambiarCiudad" class="form-control" id="ciudad" nombre="ciudad" placeholder="Ingrese ciudad">
-                        <option v-for="(key, val) in ciudades" v-bind:value="val.id">
-                          {{ val.nombre }}
-                        </option>
+                    <label>Sede:</label>
+                    <br>
+                    <select v-model="alumno.sede" onchange="app.mostrarCarreras()" class="form-control" id="sede" nombre="sede[]" placeholder="Seleccione Sede" multiple>
+                      <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="carrera">Carreras:</label>
-                    <select v-model="alumno.carrera" @change="cambiarCarrera" class="form-control" id="carrera" nombre='carrera' placeholder="Ingrese carrera">
-                        <option v-for="(key, val) in carreras" v-bind:value="key">
-                          {{ val }}
-                        </option>
+                    <label>Carrera:</label>
+                    <br>
+                    <select v-model="alumno.carrera" onchange="app.mostrarCursos()" class="form-control" id="carrera" nombre="carrera[]" placeholder="Seleccione Carrera" multiple>
+                      <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="asignatura">Asignatura:</label>
-                    <select v-model="alumno.asignatura"  class="form-control" id="asignatura" nombre='asignatura' placeholder="Ingrese asignatura">
-                        <option v-for="(key, val) in asignaturas" v-bind:value="val.id">
-                          {{ val.nombre }}
-                        </option>
+                    <label>Provincia:</label>
+                    <br>
+                    <select v-model="alumno.curso" class="form-control" id="curso" nombre="curso[]" placeholder="Seleccione Curso" multiples>
+                      <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                 </div>

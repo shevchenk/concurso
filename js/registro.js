@@ -6,7 +6,7 @@ Vue.config.debug = true;
             },
             el: '#app',
             data: {
-                ciudades:[],
+                sedes:[],
                 carreras:[],
                 departamentos:[],
                 provincias:[],
@@ -23,7 +23,7 @@ Vue.config.debug = true;
                     departamento:'',
                     carrera:'',
                     asignatura:'',
-                    ciudad:'',
+                    sede:'',
                 },
             },
             methods: {
@@ -53,25 +53,30 @@ Vue.config.debug = true;
                         this.htmlListarSlct(app.distritos,"distrito","simple");
                     });
                 },
-                mostrarCiudades: function() {
+                mostrarSedes: function() {
                     this.$http.get('sedes', function (response) {
-                        app.ciudades=response.sedes;
+                        app.sedes=response.sedes;
+                        this.htmlListarSlct(app.sedes,"sede","multiple");
                     });
                 },
-                cambiarCiudad: function() {
+                mostrarCarreras: function() {
+                    app.alumno.sede=$("#sede").val();
                     var request = {
-                        ciudad_id: app.alumno.ciudad,
+                        sedes: app.alumno.sede,
                     };
-                    this.$http.get('carreras.php', request, function (response) {
+                    this.$http.get('carreras', request, function (response) {
                         app.carreras=response;
+                        this.htmlListarSlct(app.carreras,"carrera","multiple");
                     });
                 },
-                cambiarCarrera: function() {
+                mostrarCursos: function() {
+                    app.alumno.carrera=$("#carrera").val();
                     var request = {
-                        carrera_id: app.alumno.carrera,
+                        carreras: app.alumno.carrera,
                     };
-                    this.$http.get('asignaturas.php',request, function (response) {
-                        app.asignaturas=response;
+                    this.$http.get('cursos',request, function (response) {
+                        app.cursos=response;
+                        this.htmlListarSlct(app.cursos,"curso","multiple");
                     });
                 },
                 registro: function() {
@@ -130,6 +135,7 @@ Vue.config.debug = true;
                             html += "<option "+rel+rel2+rel3+x+y+direccion+" value=\"" + data.id + "\" "+disabled+">" + data.nombre + rel4 + "</option>";
                     });
                     $("#"+slct).html(html);
+                    $("#"+slct).multiselect('destroy');
                     this.slctGlobalHtml(slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones);
                 },
                 slctGlobalHtml:function(slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
@@ -300,7 +306,9 @@ Vue.config.debug = true;
                 }
             },
             ready: function(){
-                this.mostrarCiudades();
+                this.slctGlobalHtml("departamento,#provincia,#distrito",'simple');
+                this.slctGlobalHtml("sede,#carrera,#curso",'multiple');
+                this.mostrarSedes();
                 this.mostrarDepartamentos();
             },
         });
