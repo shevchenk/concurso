@@ -171,8 +171,8 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         <input type="text" class="form-control fecha" id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
                     </td>
                     <td>
-                        <input type="file" id="grado" name="grado[]">
-                      <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                        <input type="file" @change="onGrado" id="grado" name="grado[]">
+                        <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                     </td>
                     <td>
                         <a @click="removeDatos(item)" class="btn btn-danger btn-sm">
@@ -223,7 +223,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                           <input type="text" class="form-control fecha" id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
                       </td>
                       <td>
-                          <input type="file" id="revista" name="revista[]">
+                          <input type="file" @change="onRevista" id="revista" name="revista[]">
                           <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                       </td>
                       <td>
@@ -413,7 +413,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
                   </td>
                   <td>
-                    <input type="file" id="cv">
+                    <input type="file" @change="onCV" id="cv">
                     <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                   </td>
               </table>
