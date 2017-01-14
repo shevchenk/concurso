@@ -29,26 +29,14 @@ Vue.config.debug = true;
                     carrera:'',
                     curso:'',
                     total_horas:'',
-                    manania_lunes:'',
-                    manania_martes:'',
-                    manania_miercoles:'',
-                    manania_jueves:'',
-                    manania_viernes:'',
-                    tarde_lunes:'',
-                    tarde_martes:'',
-                    tarde_miercoles:'',
-                    tarde_jueves:'',
-                    tarde_viernes:'',
-                    noche_lunes:'',
-                    noche_martes:'',
-                    noche_miercoles:'',
-                    noche_jueves:'',
-                    noche_viernes:'',
                     //experiencias:'',
                     universidad_el:'',
                     anio_el:'',
                     cargo_el:'',
 
+                    manania:[{}],
+                    tarde:[{}],
+                    noche:[{}],
                     datos_academicos:[{}],
                     publicaciones:[{}],
                     experiencias_docente:[{}],
@@ -159,7 +147,7 @@ Vue.config.debug = true;
                     console.log(request);
                     this.$http.get('cursos',request, function (response) {
                         app.cursos=response.cursos;
-                        this.htmlListarSlct(app.cursos,"curso","multiple");
+                        this.htmlListarSlct(app.cursos,"curso","multiplegrupo");
                     });
                 },
                 getCurso: function(){
