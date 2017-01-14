@@ -407,10 +407,10 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     <input type="text" class="form-control" v-model='alumno.universidad_el' id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad">
                   </td>
                   <td>
-                    <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
+                    <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
                   </td>
                   <td>
-                    <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
+                    <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
                   </td>
                   <td>
                     <input type="file" @change="onCV" id="cv">
