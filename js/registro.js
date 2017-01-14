@@ -153,7 +153,7 @@ Vue.config.debug = true;
                     });
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
-                var html="";var disabled='';
+                var html="";var disabled=''; var grupo='';
                     if(tipo!="multiple"){
                         html+= "<option value=''>.::Seleccione::.</option>";
                     }
@@ -199,8 +199,15 @@ Vue.config.debug = true;
                         /*if (data.estado==1 && tipo=='multiple')
                             html += "<option selected"+rel+rel2+x+y+direccion+" value=\"" + data.id + "\" "+disabled+">" + data.nombre + "</option>";
                         else*/
-                        
+                        if( tipo=='multiplegrupo' ){
+                            if(grupo!=data.grupo){
+                                html+="<optgroup label='"+data.grupo+"'></optgroup>"
+                            }
+                        }
+                        else{
                             html += "<option "+rel+rel2+rel3+x+y+direccion+" value=\"" + data.id + "\" "+disabled+">" + data.nombre + rel4 + "</option>";
+                        }
+                        
                     });
                     $("#"+slct).html(html);
                     $("#"+slct).multiselect('destroy');
