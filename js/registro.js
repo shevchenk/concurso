@@ -51,22 +51,8 @@ Vue.config.debug = true;
 
                     datos_academicos:[{}],
                     publicaciones:[{}],
-                    experiencias:[{}],
-                },
-                alumnoReset:{
-                    apellidos:'',
-                    nombres:'',
-                    dni:'',
-                    direccion:'',
-                    distrito:'',
-                    provincia:'',
-                    departamento:'',
-                    carrera:'',
-                    asignatura:'',
-                    sede:'',
-                    datos_academicos:[{}],
-                    publicaciones:[{}],
-                    experiencias:[{}],
+                    experiencias_docente:[{}],
+                    //experiencias_laboral:,
                 },
             },
             methods: {
@@ -82,11 +68,11 @@ Vue.config.debug = true;
                 removePublicaciones:function(id){
                     app.alumno.publicaciones.splice( id, 1 );
                 },
-                addExperiencias:function(){
-                    app.alumno.experiencias.push({});
+                addExperienciasDocente:function(){
+                    app.alumno.experiencias_docente.push({});
                 },
-                removeExperiencia:function(id){
-                    app.alumno.experiencias.splice( id, 1 );
+                removeExperienciaDocente:function(id){
+                    app.alumno.experiencias_docente.splice( id, 1 );
                 },
                 onCV: function(e) {
                     var files = e.target.files || e.dataTransfer.files;

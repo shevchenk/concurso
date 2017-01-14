@@ -162,13 +162,13 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         </select>
                     </td>
                     <td>
-                        <textarea class="form-control" id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad"></textarea>
+                        <textarea class="form-control" v-model='alumno.datos_academicos[item].universidad_p' id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad"></textarea>
                     </td>
                     <td>
-                        <textarea class="form-control" id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional"></textarea>
+                        <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional"></textarea>
                     </td>
                     <td>
-                        <input type="text" class="form-control fecha" id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
+                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p' id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
                     </td>
                     <td>
                         <input type="file" @change="onGrado" id="grado" name="grado[]">
@@ -214,13 +214,13 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                   <tr v-for="(item, index) in alumno.publicaciones">
                       <td>
-                          <textarea class="form-control" id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
+                          <textarea class="form-control" v-model='alumno.publicaciones[item].articulo' id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
                       </td>
                       <td>
-                          <textarea class="form-control" id="txt_revista" name="txt_revista[]" placeholder="Título Revista"></textarea>
+                          <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" placeholder="Título Revista"></textarea>
                       </td>
                       <td> 
-                          <input type="text" class="form-control fecha" id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
+                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion' id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
                       </td>
                       <td>
                           <input type="file" @change="onRevista" id="revista" name="revista[]">
@@ -347,7 +347,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
             <div class="box-header with-border">
               <i class="fa fa-institution"></i>
               <h3 class="box-title">EXPERIENCIA - DOCENTE
-              <a @click="addExperiencias" class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
+              <a @click="addExperienciasDocente" class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
               </h3>
             </div>
             <!-- /.box-header -->
@@ -361,15 +361,15 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in alumno.experiencias">
+                    <tr v-for="(item, index) in alumno.experiencias_docente">
                         <td>
-                            <input type="text" class="form-control" id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese   Universidad">
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e' id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese   Universidad">
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="txt_anio_e" name="txt_anio_e[]" placeholder="Ingrese Años">
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e' id="txt_anio_e" name="txt_anio_e[]" placeholder="Ingrese Años">
                         </td>
                         <td>
-                            <a @click="removeExperiencia(item)" class="btn btn-danger btn-sm">
+                            <a @click="removeExperienciaDocente(item)" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash fa-lg"></i>
                             </a>
                         </td>
@@ -396,26 +396,30 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-hover table-bordered">
-                <tr>
-                  <th class="col-md-6" style="text-align:center;">Universidad</th>
-                  <th class="col-md-3" style="text-align:center;">Cargo Actual</th>
-                  <th class="col-md-2" style="text-align:center;">Años</th>
-                  <th class="col-md-1" style="text-align:center;">Subir Hoja de Vida</th>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="text" class="form-control" v-model='alumno.universidad_el' id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad">
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
-                  </td>
-                  <td>
-                    <input type="file" @change="onCV" id="cv">
-                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
-                  </td>
+                <thead>
+                    <tr>
+                      <th class="col-md-6" style="text-align:center;">Universidad</th>
+                      <th class="col-md-3" style="text-align:center;">Cargo Actual</th>
+                      <th class="col-md-2" style="text-align:center;">Años</th>
+                      <th class="col-md-1" style="text-align:center;">Subir Hoja de Vida</th>
+                    </tr>
+                 </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                          <input type="text" class="form-control" v-model='alumno.universidad_el' id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
+                        </td>
+                        <td>
+                          <input type="file" @change="onCV" id="cv">
+                          <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                        </td>
+                      </tr>
               </table>
             </div>
             <!-- /.box-body -->
