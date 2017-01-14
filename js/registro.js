@@ -27,18 +27,23 @@ Vue.config.debug = true;
                     asignatura:'',
                     sede:'',
                 },
-                datos_academicos:[
-                    {},
-                ],
+                datos_academicos:[{}],
+                publicaciones:[{}],
             },
             methods: {
                 addDatos:function(){
-                    var dato = {id: "Claret", serie:'',tarjeta:'',accion:'',rst:'',nombre: "Marcel"};
+                    var dato = {};
                     app.datos_academicos.push(dato);
                 },
                 removeDatos:function(id){
-                    var index = app.datos_academicos.indexOf(id);
-                    app.datos_academicos.splice(index, 1);
+                    app.datos_academicos.splice( id, 1 );
+                },
+                addPublicaciones:function(){
+                    var dato = {};
+                    app.publicaciones.push(dato);
+                },
+                removePublicaciones:function(id){
+                    app.publicaciones.splice( id, 1 );
                 },
                 mostrarDepartamentos: function() {
                     this.$http.get('departamentos', function (response) {

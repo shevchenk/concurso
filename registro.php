@@ -196,38 +196,43 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
             <div class="box-header with-border">
               <i class="fa fa-newspaper-o"></i>
               <h3 class="box-title">PUBLICACIONES - ARTÍCULOS EN REVISTA CIENTÍFICA</h3>
-                <a class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
+                <a @click="addPublicaciones" class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
               </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-hover table-bordered">
-                <tr>
-                  <th class="col-md-4" style="text-align:center;">Nombre del Artículo</th>
-                  <th class="col-md-3" style="text-align:center;">Título Revista</th>
-                  <th class="col-md-2" style="text-align:center;">Año de Publicación</th>
-                  <th class="col-md-2" style="text-align:center;">Subir Archivo</th>
-                  <th class="col-md-1" style="text-align:center;">[]</th>
-                </tr>
-                <tr>
-                  <td>
-                    <textarea class="form-control" id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
-                  </td>
-                  <td>
-                    <textarea class="form-control" id="txt_revista" name="txt_revista[]" placeholder="Título Revista"></textarea>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control fecha" id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
-                  </td>
-                  <td>
-                    <input type="file" id="revista" name="revista[]">
-                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
-                  </td>
-                  <td>
-                    <a class="btn btn-danger btn-sm">
-                      <i class="fa fa-trash fa-lg"></i>
-                    </a>
-                  </td>
+                <thead>
+                  <tr>
+                    <th class="col-md-4" style="text-align:center;">Nombre del Artículo</th>
+                    <th class="col-md-3" style="text-align:center;">Título Revista</th>
+                    <th class="col-md-2" style="text-align:center;">Año de Publicación</th>
+                    <th class="col-md-2" style="text-align:center;">Subir Archivo</th>
+                    <th class="col-md-1" style="text-align:center;">[]</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in publicaciones">
+                      <td>
+                          <textarea class="form-control" id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
+                      </td>
+                      <td>
+                          <textarea class="form-control" id="txt_revista" name="txt_revista[]" placeholder="Título Revista"></textarea>
+                      </td>
+                      <td> 
+                          <input type="text" class="form-control fecha" id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
+                      </td>
+                      <td>
+                          <input type="file" id="revista" name="revista[]">
+                          <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                      </td>
+                      <td>
+                          <a @click="removePublicaciones(item)" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash fa-lg"></i>
+                          </a>
+                      </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->
