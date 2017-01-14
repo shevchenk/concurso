@@ -46,7 +46,7 @@
         <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <i class="fa fa-indent"></i>
+              <i class="fa fa-indent fa-3x"></i>
               <h3 class="box-title">POSTULANTE - DATOS PERSONALES</h3>
             </div>
             <!-- /.box-header -->
@@ -92,18 +92,313 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Departamento:</label>
-                    <input type="text" class="form-control" id="txt_paterno" placeholder="Ingrese Departamento">
+                    <input type="text" class="form-control" id="txt_departamento" placeholder="Ingrese Departamento">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Provincia:</label>
-                    <input type="text" class="form-control" id="txt_materno" placeholder="Ingrese Provincia">
+                    <input type="text" class="form-control" id="txt_provincia" placeholder="Ingrese Provincia">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Distrito:</label>
-                    <input type="text" class="form-control" id="txt_nombres" placeholder="Ingrese Distrito">
+                    <input type="text" class="form-control" id="txt_distrito" placeholder="Ingrese Distrito">
                   </div>
                 </div>
                 <!-- /.box-body -->
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      </section>
+
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - PRE GRADO 1</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Universidad:</label>
+                    <input type="text" class="form-control" id="txt_universidad_p" placeholder="Ingrese Universidad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Profesional:</label>
+                    <input type="text" class="form-control" id="txt_titulo_p" placeholder="Ingrese Título Profesional">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Expedición del Diploma:</label>
+                    <input type="text" class="form-control fecha" id="txt_año_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
+                  </div>
+                  <div class="form-group">
+                    <label for="pregrado">Subir Archivo:</label>
+                    <input type="file" id="pregrado">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - PRE GRADO 2</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Universidad:</label>
+                    <input type="text" class="form-control" id="txt_universidad_p2" placeholder="Ingrese Universidad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Profesional:</label>
+                    <input type="text" class="form-control" id="txt_titulo_p2" placeholder="Ingrese Título Profesional">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Expedición del Diploma:</label>
+                    <input type="text" class="form-control fecha" id="txt_año_diploma_p2" placeholder="Ingrese Año de Expedición del Diploma">
+                  </div>
+                  <div class="form-group">
+                    <label for="pregrado2">Subir Archivo:</label>
+                    <input type="file" id="pregrado2">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      </section>
+
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - MAESTRO O MAGISTER 1</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Universidad:</label>
+                    <input type="text" class="form-control" id="txt_universidad_m" placeholder="Ingrese Universidad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Profesional:</label>
+                    <input type="text" class="form-control" id="txt_titulo_m" placeholder="Ingrese Título Profesional">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Expedición del Diploma:</label>
+                    <input type="text" class="form-control fecha" id="txt_año_diploma_m" placeholder="Ingrese Año de Expedición del Diploma">
+                  </div>
+                  <div class="form-group">
+                    <label for="magister">Subir Archivo:</label>
+                    <input type="file" id="magister">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - MAESTRO O MAGISTER 2</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Universidad:</label>
+                    <input type="text" class="form-control" id="txt_universidad_m2" placeholder="Ingrese Universidad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Profesional:</label>
+                    <input type="text" class="form-control" id="txt_titulo_m2" placeholder="Ingrese Título Profesional">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Expedición del Diploma:</label>
+                    <input type="text" class="form-control fecha" id="txt_año_diploma_m2" placeholder="Ingrese Año de Expedición del Diploma">
+                  </div>
+                  <div class="form-group">
+                    <label for="magister2">Subir Archivo:</label>
+                    <input type="file" id="magister2">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      </section>
+
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - DOCTOR 1</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Universidad:</label>
+                    <input type="text" class="form-control" id="txt_universidad_d" placeholder="Ingrese Universidad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Profesional:</label>
+                    <input type="text" class="form-control" id="txt_titulo_d" placeholder="Ingrese Título Profesional">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Expedición del Diploma:</label>
+                    <input type="text" class="form-control fecha" id="txt_año_diploma_d" placeholder="Ingrese Año de Expedición del Diploma">
+                  </div>
+                  <div class="form-group">
+                    <label for="doctor">Subir Archivo:</label>
+                    <input type="file" id="doctor">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-graduation-cap"></i>
+              <h3 class="box-title">DATOS ACADÉMICOS - DOCTOR 2</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Universidad:</label>
+                    <input type="text" class="form-control" id="txt_universidad_d2" placeholder="Ingrese Universidad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Profesional:</label>
+                    <input type="text" class="form-control" id="txt_titulo_d2" placeholder="Ingrese Título Profesional">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Expedición del Diploma:</label>
+                    <input type="text" class="form-control fecha" id="txt_año_diploma_d2" placeholder="Ingrese Año de Expedición del Diploma">
+                  </div>
+                  <div class="form-group">
+                    <label for="doctor">Subir Archivo:</label>
+                    <input type="file" id="doctor">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      </section>
+
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-newspaper-o"></i>
+              <h3 class="box-title">PUBLICACIONES - ARTÍCULO EN REVISTA CIENTÍFICA 1</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre del Artículo:</label>
+                    <input type="text" class="form-control" id="txt_articulo" placeholder="Ingrese Nombre del Artículo">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Revista:</label>
+                    <input type="text" class="form-control" id="txt_revista" placeholder="Ingrese Título Revista">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Publicación:</label>
+                    <input type="text" class="form-control fecha" id="txt_publicacion" placeholder="Ingrese Año de Publicación">
+                  </div>
+                  <div class="form-group">
+                    <label for="revista">Subir Archivo:</label>
+                    <input type="file" id="revista">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-newspaper-o"></i>
+              <h3 class="box-title">PUBLICACIONES - ARTÍCULO EN REVISTA CIENTÍFICA 2</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre del Artículo:</label>
+                    <input type="text" class="form-control" id="txt_articulo2" placeholder="Ingrese Nombre del Artículo">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Título Revista:</label>
+                    <input type="text" class="form-control" id="txt_revista2" placeholder="Ingrese Título Revista">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Año de Publicación:</label>
+                    <input type="text" class="form-control fecha" id="txt_publicacion2" placeholder="Ingrese Año de Publicación">
+                  </div>
+                  <div class="form-group">
+                    <label for="revista2">Subir Archivo:</label>
+                    <input type="file" id="revista2">
+                    <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                  </div>
+                </div>
               </form>
             </div>
             <!-- /.box-body -->
