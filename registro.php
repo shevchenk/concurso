@@ -100,21 +100,21 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     <label>Departamento:</label>
                     <br>
                     <select v-model="alumno.departamento" onchange="app.mostrarProvincias()" class="form-control col-md-12" id="departamento" nombre="departamento" placeholder="Seleccione Departamento">
-                      <option value="">.::Seleccione::.</option>
+                      <option value="" selected>.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Provincia:</label>
                     <br>
                     <select v-model="alumno.provincia" onchange="app.mostrarDistritos()" class="form-control" id="provincia" nombre="provincia" placeholder="Seleccione Provincia">
-                      <option value="">.::Seleccione::.</option>
+                      <option value="" selected>.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Distrito:</label>
                     <br>
-                    <select v-model="alumno.distrito" class="form-control col-md-12" id="distrito" nombre="distrito" placeholder="Seleccione Distrito">
-                      <option value="">.::Seleccione::.</option>
+                    <select v-model="alumno.distrito" onchange="app.getDistrito()" class="form-control col-md-12" id="distrito" nombre="distrito" placeholder="Seleccione Distrito">
+                      <option value="" selected>.::Seleccione::.</option>
                     </select>
                   </div>
                 </div>
@@ -265,7 +265,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <div class="form-group">
                     <label>Provincia:</label>
                     <br>
-                    <select v-model="alumno.curso" class="form-control" id="curso" nombre="curso[]" placeholder="Seleccione Curso" multiples>
+                    <select v-model="alumno.curso" onchange="app.getCurso()" class="form-control" id="curso" nombre="curso[]" placeholder="Seleccione Curso" multiples>
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
@@ -413,6 +413,21 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
           <!-- /.box -->
         </div>
       </div>
+      </section>
+
+      <section>
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-cloud"></i>
+              <h3 class="box-title">Guardar
+                <a class="btn btn-primary btn-sm">
+                  <i class="fa fa-save fa-lg"></i>
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
       </section>
 
     </div>
