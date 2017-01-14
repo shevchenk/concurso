@@ -65,7 +65,7 @@ Vue.config.debug = true;
                         sedes: app.alumno.sede,
                     };
                     this.$http.get('carreras', request, function (response) {
-                        app.carreras=response;
+                        app.carreras=response.carreras;
                         this.htmlListarSlct(app.carreras,"carrera","multiple");
                     });
                 },
@@ -75,7 +75,7 @@ Vue.config.debug = true;
                         carreras: app.alumno.carrera,
                     };
                     this.$http.get('cursos',request, function (response) {
-                        app.cursos=response;
+                        app.cursos=response.cursos;
                         this.htmlListarSlct(app.cursos,"curso","multiple");
                     });
                 },
