@@ -154,7 +154,7 @@ Vue.config.debug = true;
                 mostrarCursos: function() {
                     app.alumno.carrera=$("#carrera").val();
                     var request = {
-                        carreras: $("#carrera [data-grupo]").val(),
+                        carreras: $("#carrera").val(),
                     };
                     console.log(request);
                     this.$http.get('cursos',request, function (response) {
