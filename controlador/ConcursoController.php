@@ -125,6 +125,17 @@ class ConcursoController extends \BaseController
         $experiencias_docente =Input::get('experiencias_docente');
         $experiencias_laboral =Input::get('experiencias_laboral');
 
+        if (Input::has('cv')) {
+            $cv = Input::get('cv');
+            list($type, $cv) = explode(';', $cv);
+            list(, $type) = explode('/', $type);
+            if ($type=='jpeg') $type='jpg';
+            list(, $cv)      = explode(',', $cv);
+            $cv = base64_decode($cv);
+            $imagen = "u".Input::get('id') . "." . $type;
+            $file = $uploadFolder . '/' . $imagen;
+            file_put_contents($file , $cv);
+        }
         $concurso=new Concurso;
         $concurso->dni = $dni;
         $concurso->paterno = $paterno;

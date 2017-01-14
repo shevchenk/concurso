@@ -169,6 +169,11 @@ Vue.config.debug = true;
                     app.alumno.distrito=$("#distrito").val();
                 },
                 registro: function() {
+                    //añadir las imagenes antes de enviar
+                    //this.alumno.imagen=this.imagen;
+                    //this.alumno.imagen_dni=this.imagen_dni;
+
+                    //grado y revista
                     this.$http.post('registrar',app.alumno, function (response) {
                         //app.carreras=response;
                     });
