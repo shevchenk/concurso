@@ -347,29 +347,34 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
             <div class="box-header with-border">
               <i class="fa fa-institution"></i>
               <h3 class="box-title">EXPERIENCIA - DOCENTE
-              <a class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
+              <a @click="addExperiencias" class="btn btn-succes btn-sm"><i class="fa fa-plus"></i></a>
               </h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-hover table-bordered">
-                <tr>
-                  <th class="col-md-9" style="text-align:center;">Universidad</th>
-                  <th class="col-md-2" style="text-align:center;">Años</th>
-                  <th class="col-md-1" style="text-align:center;">[]</th>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="text" class="form-control" id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese Universidad">
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" id="txt_anio_e" name="txt_anio_e[]" placeholder="Ingrese Años">
-                  </td>
-                  <td>
-                    <a class="btn btn-danger btn-sm">
-                      <i class="fa fa-trash fa-lg"></i>
-                    </a>
-                  </td>
+                <thead>
+                    <tr>
+                        <th class="col-md-9" style="text-align:center;">Universidad</th>
+                        <th class="col-md-2" style="text-align:center;">Años</th>
+                        <th class="col-md-1" style="text-align:center;">[]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in experiencias">
+                        <td>
+                            <input type="text" class="form-control" id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese   Universidad">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="txt_anio_e" name="txt_anio_e[]" placeholder="Ingrese Años">
+                        </td>
+                        <td>
+                            <a @click="removeExperiencia(item)" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->
@@ -426,7 +431,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
             <div class="box-header with-border">
               <i class="fa fa-cloud"></i>
               <h3 class="box-title">Guardar
-                <a class="btn btn-primary btn-sm">
+                <a @click="registro" class="btn btn-primary btn-sm">
                   <i class="fa fa-save fa-lg"></i>
                 </a>
               </h3>

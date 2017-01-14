@@ -29,21 +29,26 @@ Vue.config.debug = true;
                 },
                 datos_academicos:[{}],
                 publicaciones:[{}],
+                experiencias:[{}],
             },
             methods: {
                 addDatos:function(){
-                    var dato = {};
-                    app.datos_academicos.push(dato);
+                    app.datos_academicos.push({});
                 },
                 removeDatos:function(id){
                     app.datos_academicos.splice( id, 1 );
                 },
                 addPublicaciones:function(){
-                    var dato = {};
-                    app.publicaciones.push(dato);
+                    app.publicaciones.push({});
                 },
                 removePublicaciones:function(id){
                     app.publicaciones.splice( id, 1 );
+                },
+                addExperiencias:function(){
+                    app.experiencias.push({});
+                },
+                removeExperiencia:function(id){
+                    app.experiencias.splice( id, 1 );
                 },
                 mostrarDepartamentos: function() {
                     this.$http.get('departamentos', function (response) {
@@ -104,7 +109,7 @@ Vue.config.debug = true;
                     app.alumno.distrito=$("#distrito").val();
                 },
                 registro: function() {
-                    this.$http.get('registro.php',app.alumno, function (response) {
+                    this.$http.post('registrar',app.alumno, function (response) {
                         //app.carreras=response;
                     });
                 },
