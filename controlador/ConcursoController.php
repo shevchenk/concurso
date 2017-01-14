@@ -87,8 +87,87 @@ class ConcursoController extends \BaseController
             $rst['rst']='1';
             $rst['msj']='Registro realizado correctamente';
         }
-        
-        return Response::json($rst);
+
+        $dni = Input::get('dni');
+        $paterno = Input::get('paterno');
+        $materno = Input::get('materno');
+        $nombres = Input::get('nombres');
+        $direccion = Input::get('direccion');
+        $departamento = Input::get('departamento');
+        $provincia = Input::get('provincia');
+        $distrito = Input::get('distrito');
+        $sede = Input::get('sede');
+        $carrera = Input::get('carrera');
+        $curso = Input::get('curso');
+        $total_horas = Input::get('total_horas');
+        $manania_lunes = Input::get('manania_lunes');
+        $manania_martes = Input::get('manania_martes');
+        $manania_miercoles = Input::get('manania_miercoles');
+        $manania_jueves = Input::get('manania_jueves');
+        $manania_viernes = Input::get('manania_viernes');
+        $tarde_lunes = Input::get('tarde_lunes');
+        $tarde_martes = Input::get('tarde_martes');
+        $tarde_miercoles = Input::get('tarde_miercoles');
+        $tarde_jueves = Input::get('tarde_jueves');
+        $tarde_viernes = Input::get('tarde_viernes');
+        $noche_lunes = Input::get('noche_lunes');
+        $noche_martes = Input::get('noche_martes');
+        $noche_miercoles = Input::get('noche_miercoles');
+        $noche_jueves = Input::get('noche_jueves');
+        $noche_viernes = Input::get('noche_viernes');
+        $universidad_el = Input::get('universidad_el');
+        $anio_el = Input::get('anio_el');
+        $cargo_el = Input::get('cargo_el');
+
+        //para insertar con bucles
+        $datos_academicos =Input::get('datos_academicos');
+        $publicaciones =Input::get('publicaciones');
+        $experiencias_docente =Input::get('experiencias_docente');
+        $experiencias_laboral =Input::get('experiencias_laboral');
+
+        $concurso=new Concurso;
+        $concurso->dni = $dni;
+        $concurso->paterno = $paterno;
+        $concurso->materno = $materno;
+        $concurso->nombres = $nombres;
+        $concurso->direccion = $direccion;
+        $concurso->departamento_id = $departamento;
+        $concurso->provincia_id = $provincia;
+        $concurso->distrito_id = $distrito;
+        $concurso->save();
+
+
+/*
+        $concurso->ultima_institucion = $universidad_el;
+        $concurso->anios = $anio_el;
+        $concurso->cargo_actual = $cargo_el;
+*/
+        /*
+        $concurso->sede = $sede;
+        $concurso->carrera = $carrera;
+        $concurso->curso = $curso;
+        $concurso->total_horas = $total_horas;
+        $concurso->manania_lunes = $manania_lunes;
+        $concurso->manania_martes = $manania_martes;
+        $concurso->manania_miercoles = $manania_miercoles;
+        $concurso->manania_jueves = $manania_jueves;
+        $concurso->manania_viernes = $manania_viernes;
+        $concurso->tarde_lunes = $tarde_lunes;
+        $concurso->tarde_martes = $tarde_martes;
+        $concurso->tarde_miercoles = $tarde_miercoles;
+        $concurso->tarde_jueves = $tarde_jueves;
+        $concurso->tarde_viernes = $tarde_viernes;
+        $concurso->noche_lunes = $noche_lunes;
+        $concurso->noche_martes = $noche_martes;
+        $concurso->noche_miercoles = $noche_miercoles;
+        $concurso->noche_jueves = $noche_jueves;
+        $concurso->noche_viernes = $noche_viernes;
+        */
+        $datos = [
+            $dni
+        ];
+        return Response::json($datos);
+        //return Response::json($rst);
     }
 
 }
