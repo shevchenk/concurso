@@ -61,19 +61,19 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <div class="box-body">
                   <div class="form-group">
                     <label>DNI:</label>
-                    <input type="text" class="form-control" id="txt_dni" name="txt_dni" placeholder="Ingrese DNI">
+                    <input type="text" class="form-control" v-model='alumno.dni' id="txt_dni" name="txt_dni" placeholder="Ingrese DNI">
                   </div>
                   <div class="form-group">
                     <label>Paterno:</label>
-                    <input type="text" class="form-control" id="txt_paterno" name="txt_paterno" placeholder="Ingrese Paterno">
+                    <input type="text" class="form-control" v-model='alumno.paterno' id="txt_paterno" name="txt_paterno" placeholder="Ingrese Paterno">
                   </div>
                   <div class="form-group">
                     <label>Materno:</label>
-                    <input type="text" class="form-control" id="txt_materno" name="txt_materno" placeholder="Ingrese Materno">
+                    <input type="text" class="form-control" v-model='alumno.materno' id="txt_materno" name="txt_materno" placeholder="Ingrese Materno">
                   </div>
                   <div class="form-group">
                     <label>Nombre(s):</label>
-                    <input type="text" class="form-control" id="txt_nombres" name="txt_nombres" placeholder="Ingrese Nombres">
+                    <input type="text" class="form-control" v-model='alumno.nombres' id="txt_nombres" name="txt_nombres" placeholder="Ingrese Nombres">
                   </div>
                 </div>
               </form>
@@ -94,7 +94,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <div class="box-body">
                   <div class="form-group">
                     <label>Dirección:</label>
-                    <input type="text" class="form-control" id="txt_direccion" name="txt_direccion" placeholder="Ingrese Dirección">
+                    <input type="text" class="form-control" v-model='alumno.direccion' id="txt_direccion" name="txt_direccion" placeholder="Ingrese Dirección">
                   </div>
                   <div class="form-group">
                     <label>Departamento:</label>
@@ -152,7 +152,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(item, index) in datos_academicos">
+                  <tr v-for="(item, index) in alumno.datos_academicos">
                     <td>
                         <select name="slct_tipo_grado">
                           <option value="">.::Seleccione::.</option>
@@ -212,7 +212,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(item, index) in publicaciones">
+                  <tr v-for="(item, index) in alumno.publicaciones">
                       <td>
                           <textarea class="form-control" id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
                       </td>
@@ -290,7 +290,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 </h3>
               </div>
               <div class="col-md-2">
-                <input type="numeric" class="form-control" name="total_horas" value="0" readonly>
+                <input type="numeric" class="form-control" v-model='alumno.total_horas' name="total_horas" value="0" readonly>
               </div>
             </div>
             <!-- /.box-header -->
@@ -308,27 +308,27 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                       </tr>
                       <tr>
                         <th>Mañana</th>
-                        <td><input type="numeric" class="form-control" name="lunes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="martes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="miercoles[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="jueves[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="viernes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.manania_lunes' name="lunes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.manania_martes' name="martes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.manania_miercoles' name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.manania_jueves' name="jueves[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.manania_viernes' name="viernes[]" value="0"></td>
                       </tr>
                       <tr>
                         <th>Tarde</th>
-                        <td><input type="numeric" class="form-control" name="lunes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="martes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="miercoles[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="jueves[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="viernes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.tarde_lunes' name="lunes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.tarde_martes' name="martes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.tarde_miercoles' name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.tarde_jueves' name="jueves[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.tarde_viernes' name="viernes[]" value="0"></td>
                       </tr>
                       <tr>
                         <th>Noche</th>
-                        <td><input type="numeric" class="form-control" name="lunes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="martes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="miercoles[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="jueves[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" name="viernes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.noche_lunes' name="lunes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.noche_martes' name="martes[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.noche_miercoles' name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.noche_jueves' name="jueves[]" value="0"></td>
+                        <td><input type="numeric" class="form-control" v-model='alumno.noche_viernes' name="viernes[]" value="0"></td>
                       </tr>
 
                     </table>
@@ -361,7 +361,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in experiencias">
+                    <tr v-for="(item, index) in alumno.experiencias">
                         <td>
                             <input type="text" class="form-control" id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese   Universidad">
                         </td>
@@ -404,13 +404,13 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" class="form-control" id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad">
+                    <input type="text" class="form-control" v-model='alumno.universidad_el' id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad">
                   </td>
                   <td>
-                    <input type="text" class="form-control" id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
+                    <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
                   </td>
                   <td>
-                    <input type="text" class="form-control" id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
+                    <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
                   </td>
                   <td>
                     <input type="file" id="cv">

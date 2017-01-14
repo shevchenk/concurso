@@ -14,7 +14,11 @@ Vue.config.debug = true;
                 provincias:[],
                 distritos:[],
                 asignaturas:[],
-                alumno:{},
+                alumno:{
+                    datos_academicos:[{}],
+                    publicaciones:[{}],
+                    experiencias:[{}],
+                },
                 alumnoReset:{
                     apellidos:'',
                     nombres:'',
@@ -26,10 +30,10 @@ Vue.config.debug = true;
                     carrera:'',
                     asignatura:'',
                     sede:'',
+                    datos_academicos:[{}],
+                    publicaciones:[{}],
+                    experiencias:[{}],
                 },
-                datos_academicos:[{}],
-                publicaciones:[{}],
-                experiencias:[{}],
             },
             methods: {
                 addDatos:function(){
