@@ -79,6 +79,12 @@ Vue.config.debug = true;
                         this.htmlListarSlct(app.cursos,"curso","multiple");
                     });
                 },
+                getCurso: function(){
+                    app.alumno.curso=$("#curso").val();
+                },
+                getDistrito: function(){
+                    app.alumno.distrito=$("#distrito").val();
+                },
                 registro: function() {
                     this.$http.get('registro.php',app.alumno, function (response) {
                         //app.carreras=response;
