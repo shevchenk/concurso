@@ -71,22 +71,22 @@ Vue.config.debug = true;
             },
             methods: {
                 addDatos:function(){
-                    app.datos_academicos.push({});
+                    app.alumno.datos_academicos.push({});
                 },
                 removeDatos:function(id){
-                    app.datos_academicos.splice( id, 1 );
+                    app.alumno.datos_academicos.splice( id, 1 );
                 },
                 addPublicaciones:function(){
-                    app.publicaciones.push({});
+                    app.alumno.publicaciones.push({});
                 },
                 removePublicaciones:function(id){
-                    app.publicaciones.splice( id, 1 );
+                    app.alumno.publicaciones.splice( id, 1 );
                 },
                 addExperiencias:function(){
-                    app.experiencias.push({});
+                    app.alumno.experiencias.push({});
                 },
                 removeExperiencia:function(id){
-                    app.experiencias.splice( id, 1 );
+                    app.alumno.experiencias.splice( id, 1 );
                 },
                 onCV: function(e) {
                     var files = e.target.files || e.dataTransfer.files;
