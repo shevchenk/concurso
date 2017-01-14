@@ -134,8 +134,9 @@ Vue.config.debug = true;
                 mostrarCursos: function() {
                     app.alumno.carrera=$("#carrera").val();
                     var request = {
-                        carreras: $("#carrera").val(),
+                        carreras: $("#carrera [data-grupo]").val(),
                     };
+                    console.log(request);
                     this.$http.get('cursos',request, function (response) {
                         app.cursos=response.cursos;
                         this.htmlListarSlct(app.cursos,"curso","multiple");
@@ -204,9 +205,10 @@ Vue.config.debug = true;
                                 if(html!=''){
                                     html+="</optgroup>";
                                 }
+                                grupo=data.grupo;
                                 html+="<optgroup label='"+data.grupo+"'>";
                             }
-                            html += "<option value=\"" + data.id + "\" data-grupo_id='"+data.grupo_id+"'>" + data.nombre + "</option>";
+                            html += "<option value=\"" + data.id + "\" data-grupo='"+data.grupo_id+"'>" + data.nombre + "</option>";
                         }
                         else{
                             html += "<option "+rel+rel2+rel3+x+y+direccion+" value=\"" + data.id + "\" "+disabled+">" + data.nombre + rel4 + "</option>";
