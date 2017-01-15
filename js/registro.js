@@ -199,44 +199,12 @@ Vue.config.debug = true;
                 getDistrito: function(){
                     app.alumno.distrito=$("#distrito").val();
                 },
+                validate() {
+                  this.$validator.validateAll()
+                  return this.errors.any()
+                },
                 registro: function() {
-                    //añadir las imagenes antes de enviar
-                    //this.alumno.imagen=this.imagen;
-                    //this.alumno.imagen_dni=this.imagen_dni;
-                    var valor=true;
-                    if(app.alumno.dni==''){
-                        alert('Ingrese DNI');
-                        valor=false;
-                    }
-                    else if(app.alumno.paterno==''){
-                        alert('Ingrese Paterno');
-                        valor=false;
-                    }
-                    else if(app.alumno.materno==''){
-                        alert('Ingrese Materno');
-                        valor=false;
-                    }
-                    
-                    $("#tr_academicos tr").each(function() {
-                       if($(this).find("select").val()=='' && valor==true){
-                        alert('Seleccione Tipo Grado');
-                        valor=false;
-                       }
-                       else if( $(this).find("#txt_universidad_p").val()=='' && valor==true ){
-                        alert('Ingrese Universidad');
-                        valor=false;
-                       }
-                       else if( $(this).find("#txt_titulo_p").val()=='' && valor==true ){
-                        alert('Ingrese Título');
-                        valor=false;
-                       }
-                       else if( $(this).find("#txt_anio_diploma_p").val()=='' && valor==true ){
-                        alert('Ingrese Año de Expedición de Diploma');
-                        valor=false;
-                       }
-                    });
-
-                    if(valor){
+                    if(!this.validate()) {
                         this.$http.post('registrar',app.alumno, function (response) {
                             alert("Se registro con éxito a:"+response[0]);
                             $("#form").submit();
