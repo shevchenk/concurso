@@ -211,10 +211,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                     </td>
                     <td>
-                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p'
-                        v-validate.initial="alumno.datos_academicos[item].anio_diploma_p" data-rules="required|numeric|digits:4" :class="{'input': true, 'is-danger': errors.has('alumno.datos_academicos[item].anio_diploma_p') }">
-                        <i v-show="errors.has('alumno.datos_academicos[item].anio_diploma_p')" class="fa fa-warning"></i>
-                        <span v-show="errors.has('alumno.datos_academicos[item].anio_diploma_p')" class="help is-danger">{{ errors.first('alumno.datos_academicos[item].anio_diploma_p') }}</span>
+                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p'>
 
                     </td>
                     <td>
@@ -268,10 +265,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                           <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                       </td>
                       <td>
-                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion'
-                          v-validate.initial="alumno.publicaciones[item].publicacion" data-rules="required|numeric|digits:4" :class="{'input': true, 'is-danger': errors.has('alumno.publicaciones[item].publicacion') }">
-                          <i v-show="errors.has('alumno.publicaciones[item].publicacion')" class="fa fa-warning"></i>
-                          <span v-show="errors.has('alumno.publicaciones[item].publicacion')" class="help is-danger">{{ errors.first('alumno.publicaciones[item].publicacion') }}</span>
+                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion'>
                       </td>
                       <td>
                            <input type="hidden" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
@@ -423,17 +417,11 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr v-for="(item, index) in alumno.experiencias_docente">
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e'
-                            v-validate.initial="alumno.experiencias_docente[item].universidad_e" data-rules="required|max:100" :class="{'input': true, 'is-danger': errors.has('alumno.experiencias_docente[item].universidad_e') }">
-                          <i v-show="errors.has('alumno.experiencias_docente[item].universidad_e')" class="fa fa-warning"></i>
-                          <span v-show="errors.has('alumno.experiencias_docente[item].universidad_e')" class="help is-danger">{{ errors.first('alumno.experiencias_docente[item].universidad_e') }}</span>
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e'>
 
                         </td>
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e'
-                            v-validate.initial="alumno.experiencias_docente[item].anio_e" data-rules="required|numeric|max:2" :class="{'input': true, 'is-danger': errors.has('alumno.experiencias_docente[item].anio_e') }">
-                            <i v-show="errors.has('alumno.experiencias_docente[item].anio_e')" class="fa fa-warning"></i>
-                            <span v-show="errors.has('alumno.experiencias_docente[item].anio_e')" class="help is-danger">{{ errors.first('alumno.experiencias_docente[item].anio_e') }}</span>
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e'>
                         </td>
                         <td>
                             <a @click="removeExperienciaDocente(item)" class="btn btn-danger btn-sm">
