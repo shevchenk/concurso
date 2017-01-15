@@ -80,14 +80,14 @@ class ConcursoController extends \BaseController
 
     public function postRegistrar()
     {
-        $ok=2;
-        $rst['rst']='2';
-        $rst['msj']='Verifique falta validar';
-        if($ok==1){
+        if (Input::has('dni') && Input::get('dni')!='') {
             $rst['rst']='1';
             $rst['msj']='Registro realizado correctamente';
+        } else {
+            $rst['rst']='2';
+            $rst['msj']='Verifique falta validar';
+            return $rst;
         }
-
         $dni = Input::get('dni');
         $paterno = Input::get('paterno');
         $materno = Input::get('materno');
@@ -113,7 +113,15 @@ class ConcursoController extends \BaseController
         $publicaciones =Input::get('publicaciones');
         $experiencias_docente =Input::get('experiencias_docente');
         $experiencias_laboral =Input::get('experiencias_laboral');
-
+        
+        $uploadFolder = 'upload/'.$dni;
+        
+        if ( !is_dir('upload') ) {
+            mkdir('upload');
+        }
+        if ( !is_dir($uploadFolder) ) {
+            mkdir($uploadFolder);
+        }
         if (Input::has('cv')) {
             $cv = Input::get('cv');
             list($type, $cv) = explode(';', $cv);
@@ -121,9 +129,11 @@ class ConcursoController extends \BaseController
             if ($type=='jpeg') $type='jpg';
             list(, $cv)      = explode(',', $cv);
             $cv = base64_decode($cv);
-            $imagen = "u".Input::get('id') . "." . $type;
+            //$imagen = "u".Input::get('id') . "." . $type;
+            $imagen = $dni."_cv." . $type;
             $file = $uploadFolder . '/' . $imagen;
             file_put_contents($file , $cv);
+
         }
 
         DB::beginTransaction();
