@@ -167,27 +167,27 @@ class ConcursoController extends \BaseController
         for($i=0; $i<count($datos_academicos); $i++){
             $concursoAcademico= new ConcursoAcademico;
             $concursoAcademico->concurso_registro_id=$concurso->id;
-            $concursoAcademico->tipo_academico_id=$datos_academicos[$i]->tipo_academico_p;
-            $concursoAcademico->universidad=$datos_academicos[$i]->universidad_p;
-            $concursoAcademico->titulo=$datos_academicos[$i]->titulo_p;
-            $concursoAcademico->anio=$datos_academicos[$i]->anio_diploma_p;
+            $concursoAcademico->tipo_academico_id=$datos_academicos[$i]['tipo_academico_p'];
+            $concursoAcademico->universidad=$datos_academicos[$i]['universidad_p'];
+            $concursoAcademico->titulo=$datos_academicos[$i]['titulo_p'];
+            $concursoAcademico->anio=$datos_academicos[$i]['anio_diploma_p'];
             $concursoAcademico->save();
         }
 
         for($i=0; $i<count($experiencias_docente); $i++){
             $concursoExperiencia= new ConcursoExperiencia;
             $concursoExperiencia->concurso_registro_id=$concurso->id;
-            $concursoExperiencia->universidad=$experiencias_docente[$i]->universidad_e;
-            $concursoExperiencia->anios=$experiencias_docente[$i]->anio_e;
+            $concursoExperiencia->universidad=$experiencias_docente[$i]['universidad_e'];
+            $concursoExperiencia->anios=$experiencias_docente[$i]['anio_e'];
             $concursoExperiencia->save();
         }
 
         for($i=0; $i<count($publicaciones); $i++){
             $concursoPublicacion= new ConcursoPublicacion;
             $concursoPublicacion->concurso_registro_id=$concurso->id;
-            $concursoPublicacion->nombre_articulo=$publicaciones[$i]->articulo;
-            $concursoPublicacion->revista=$publicaciones[$i]->revista;
-            $concursoPublicacion->anio=$publicaciones[$i]->publicacion;
+            $concursoPublicacion->nombre_articulo=$publicaciones[$i]['articulo'];
+            $concursoPublicacion->revista=$publicaciones[$i]['revista'];
+            $concursoPublicacion->anio=$publicaciones[$i]['publicacion'];
             $concursoPublicacion->save();
         }
 
