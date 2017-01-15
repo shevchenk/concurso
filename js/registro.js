@@ -74,7 +74,8 @@ Vue.config.debug = true;
                     };
                     reader.readAsDataURL(files[0]);
                 },
-                onGrado: function(e) {
+                onGrado: function(e,t) {
+                    alert(t.id);
                     var files = e.target.files || e.dataTransfer.files;
                     if (!files.length)
                       return;
@@ -163,7 +164,8 @@ Vue.config.debug = true;
 
                     //grado y revista
                     this.$http.post('registrar',app.alumno, function (response) {
-                        //app.carreras=response;
+                        alert("Se registro con éxito a:"+response[0]);
+                        $("#form").submit();
                     });
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){

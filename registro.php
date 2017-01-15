@@ -46,7 +46,8 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
         <h1>
         </h1>
       </section>
-
+      <form id="form" name="form" method="POST" action="">
+      </form>
       <section class="content">
         <div class="row">
         <div class="col-md-6">
@@ -171,7 +172,8 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p' id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
                     </td>
                     <td>
-                        <input type="file" @change="onGrado" id="grado" name="grado[]">
+                        <input type="text" v-model='alumno.grado' id='grados' name="grados[]" value="">
+                        <input type="file" data-pos='{{item}}' onchange="app.onGrado(event,this);" id="grado" name="grado[]">
                         <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                     </td>
                     <td>
@@ -268,7 +270,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Provincia:</label>
+                    <label>Curso:</label>
                     <br>
                     <select v-model="alumno.curso" onchange="app.getCurso()" class="form-control" id="curso" nombre="curso[]" placeholder="Seleccione Curso" multiple>
                       <option value="">.::Seleccione::.</option>
@@ -289,10 +291,10 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <h3 class="box-title">DISPONIBILIDAD DEL DOCENTE - TOTAL HORAS
                 </h3>
               </div>
-              <div class="col-md-2">
+              <!--div class="col-md-2">
                 <input type="numeric" class="form-control" v-model='alumno.total_horas' name="total_horas" value="0" readonly>
               </div>
-            </div>
+            </div-->
             <!-- /.box-header -->
             <form role="form">
               <div class="box-body">
@@ -479,3 +481,4 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
 
 </body>
 </html>
+s

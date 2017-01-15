@@ -103,7 +103,7 @@ class ConcursoController extends \BaseController
         $cargo_el = Input::get('cargo_el');
 
         //para insertar con bucles
-        $maniana= Input::get('maniana');
+        $manania= Input::get('manania');
         $tarde= Input::get('tarde');
         $noche= Input::get('noche');
         $sede = Input::get('sede');
@@ -114,6 +114,7 @@ class ConcursoController extends \BaseController
         $experiencias_docente =Input::get('experiencias_docente');
         $experiencias_laboral =Input::get('experiencias_laboral');
 
+        $uploadFolder="file";
         if (Input::has('cv')) {
             $cv = Input::get('cv');
             list($type, $cv) = explode(';', $cv);
@@ -141,59 +142,83 @@ class ConcursoController extends \BaseController
         $concurso->cargo_actual = $cargo_el;
         $concurso->save();
 
-        for($i=0; $i<count($maniana); $i++){
-            $concursoHorario= new ConcursoHorario;
-            $concursoHorario->concurso_registro_id=$concurso->id;
-            $concursoHorario->dia=($i+1);
-            $concursoHorario->turno=1;
-            $concursoHorario->horas=$maniana[$i];
-            $concursoHorario->save();
+        if(count($manania)>0){
+            for($i=0; $i<count($manania); $i++){
+                $concursoHorario= new ConcursoHorario;
+                $concursoHorario->concurso_registro_id=$concurso->id;
+                $concursoHorario->dia=($i+1);
+                $concursoHorario->turno=1;
+                $concursoHorario->horas=$manania[$i];
+                $concursoHorario->save();
 
-            $concursoHorario= new ConcursoHorario;
-            $concursoHorario->concurso_registro_id=$concurso->id;
-            $concursoHorario->dia=($i+1);
-            $concursoHorario->turno=2;
-            $concursoHorario->horas=$tarde[$i];
-            $concursoHorario->save();
+                $concursoHorario= new ConcursoHorario;
+                $concursoHorario->concurso_registro_id=$concurso->id;
+                $concursoHorario->dia=($i+1);
+                $concursoHorario->turno=2;
+                $concursoHorario->horas=$tarde[$i];
+                $concursoHorario->save();
 
-            $concursoHorario= new ConcursoHorario;
-            $concursoHorario->concurso_registro_id=$concurso->id;
-            $concursoHorario->dia=($i+1);
-            $concursoHorario->turno=3;
-            $concursoHorario->horas=$noche[$i];
-            $concursoHorario->save();
+                $concursoHorario= new ConcursoHorario;
+                $concursoHorario->concurso_registro_id=$concurso->id;
+                $concursoHorario->dia=($i+1);
+                $concursoHorario->turno=3;
+                $concursoHorario->horas=$noche[$i];
+                $concursoHorario->save();
+            }
         }
 
-        for($i=0; $i<count($datos_academicos); $i++){
-            $concursoAcademico= new ConcursoAcademico;
-            $concursoAcademico->concurso_registro_id=$concurso->id;
-            $concursoAcademico->tipo_academico_id=$datos_academicos[$i]['tipo_academico_p'];
-            $concursoAcademico->universidad=$datos_academicos[$i]['universidad_p'];
-            $concursoAcademico->titulo=$datos_academicos[$i]['titulo_p'];
-            $concursoAcademico->anio=$datos_academicos[$i]['anio_diploma_p'];
-            $concursoAcademico->save();
+        if(count($datos_academicos)>0 AND isset($datos_academicos[0]['tipo_academico_p']) ){
+            for($i=0; $i<count($datos_academicos); $i++){
+                $concursoAcademico= new ConcursoAcademico;
+                $concursoAcademico->concurso_registro_id=$concurso->id;
+                $concursoAcademico->tipo_academico_id=$datos_academicos[$i]['tipo_academico_p'];
+                $concursoAcademico->universidad=$datos_academicos[$i]['universidad_p'];
+                $concursoAcademico->titulo=$datos_academicos[$i]['titulo_p'];
+                $concursoAcademico->anio=$datos_academicos[$i]['anio_diploma_p'];
+                $concursoAcademico->save();
+            }
         }
 
-        for($i=0; $i<count($experiencias_docente); $i++){
-            $concursoExperiencia= new ConcursoExperiencia;
-            $concursoExperiencia->concurso_registro_id=$concurso->id;
-            $concursoExperiencia->universidad=$experiencias_docente[$i]['universidad_e'];
-            $concursoExperiencia->anios=$experiencias_docente[$i]['anio_e'];
-            $concursoExperiencia->save();
+        if(count($experiencias_docente)>0 AND isset($datos_academicos[0]['universidad_e'])){
+            for($i=0; $i<count($experiencias_docente); $i++){
+                $concursoExperiencia= new ConcursoExperiencia;
+                $concursoExperiencia->concurso_registro_id=$concurso->id;
+                $concursoExperiencia->universidad=$experiencias_docente[$i]['universidad_e'];
+                $concursoExperiencia->anios=$experiencias_docente[$i]['anio_e'];
+                $concursoExperiencia->save();
+            }
         }
 
-        for($i=0; $i<count($publicaciones); $i++){
-            $concursoPublicacion= new ConcursoPublicacion;
-            $concursoPublicacion->concurso_registro_id=$concurso->id;
-            $concursoPublicacion->nombre_articulo=$publicaciones[$i]['articulo'];
-            $concursoPublicacion->revista=$publicaciones[$i]['revista'];
-            $concursoPublicacion->anio=$publicaciones[$i]['publicacion'];
-            $concursoPublicacion->save();
+        if(count($publicaciones)>0 AND isset($datos_academicos[0]['articulo'])){
+            for($i=0; $i<count($publicaciones); $i++){
+                $concursoPublicacion= new ConcursoPublicacion;
+                $concursoPublicacion->concurso_registro_id=$concurso->id;
+                $concursoPublicacion->nombre_articulo=$publicaciones[$i]['articulo'];
+                $concursoPublicacion->revista=$publicaciones[$i]['revista'];
+                $concursoPublicacion->anio=$publicaciones[$i]['publicacion'];
+                $concursoPublicacion->save();
+            }
+        }
+
+
+        if(Input::get('curso')!=''){
+        $carreras = implode(",",Input::get('carrera'));
+        $cursos = implode(",",Input::get('curso'));
+            $sql="  INSERT INTO concurso_registros_carreras_cursos (concurso_registro_id,concurso_sede_carrera_id,concurso_curso_carrera_id,created_at)
+                    SELECT ".$concurso->id.",csc.id,ccc.id,now()
+                    FROM concurso_cursos cc 
+                    INNER JOIN concurso_cursos_carreras ccc ON ccc.curso_id=cc.id
+                    INNER JOIN concurso_carreras cca ON cca.id=ccc.carrera_id
+                    INNER JOIN concurso_sedes_carreras csc ON csc.carrera_id=cca.id
+                    WHERE csc.id IN (".$carreras.")
+                    AND ccc.id IN (".$cursos.")
+                    GROUP BY ccc.id,csc.id";
+            $rcurso=DB::insert($sql);
         }
 
         DB::commit();
         $datos = [
-            $dni
+            $paterno." ".$materno.", ".$nombres." Con DNI:".$dni
         ];
 
         return Response::json($datos);
