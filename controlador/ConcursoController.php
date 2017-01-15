@@ -77,7 +77,28 @@ class ConcursoController extends \BaseController
         $rst['msj']='Listado correctamente';
         return Response::json($rst); 
     }
-
+    /**
+     * $file  valor que se recive del frontend
+     * $dni
+     * $url_cv  url para guardar en el backend
+     */
+    public function fileToFile($file,$dni, $url_cv){
+        if ( !is_dir('upload') ) {
+            mkdir('upload');
+        }
+        if ( !is_dir('upload/'.$dni) ) {
+            mkdir('upload/'.$dni);
+        }
+        list($type, $file) = explode(';', $file);
+        list(, $type) = explode('/', $type);
+        if ($type=='jpeg') $type='jpg';
+        if ($type=='vnd.openxmlformats-officedocument.wordprocessingml.document') $type='docx';
+        if ($type=='sheet') $type='xlsx';
+        list(, $file)      = explode(',', $file);
+        $file = base64_decode($file);
+        file_put_contents($url_cv. $type , $file);
+        //dd($url_cv); 
+    }
     public function postRegistrar()
     {
         if (Input::has('dni') && Input::get('dni')!='') {
@@ -114,26 +135,10 @@ class ConcursoController extends \BaseController
         $experiencias_docente =Input::get('experiencias_docente');
         $experiencias_laboral =Input::get('experiencias_laboral');
 
-        $uploadFolder = 'upload/'.$dni;
-        
-        if ( !is_dir('upload') ) {
-            mkdir('upload');
-        }
-        if ( !is_dir($uploadFolder) ) {
-            mkdir($uploadFolder);
-        }
         if (Input::has('cv')) {
             $cv = Input::get('cv');
-            list($type, $cv) = explode(';', $cv);
-            list(, $type) = explode('/', $type);
-            if ($type=='jpeg') $type='jpg';
-            if ($type=='vnd.openxmlformats-officedocument.wordprocessingml.document') $type='docx';
-            if ($type=='sheet') $type='xlsx';
-            list(, $cv)      = explode(',', $cv);
-            $cv = base64_decode($cv);
-            $url_cv = $uploadFolder . '/' . "cv." . $type;
-            file_put_contents($url_cv , $cv);
-            //return ['0'=>$url_cv,'1'=>$type];
+            $url_cv = 'upload/'.$dni . "/cv." ;
+            $this->fileToFile($cv, $dni, $url_cv);
         }
 
         DB::beginTransaction();
