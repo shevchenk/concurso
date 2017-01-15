@@ -20,6 +20,25 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
     .is-danger {
       color: red;
     }
+    .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
   </style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -474,7 +493,9 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                             <span v-show="errors.has('alumno.anio_el')" class="help is-danger">{{ errors.first('alumno.anio_el') }}</span>
                         </td>
                         <td>
-                          <input type="file" @change="onCV" id="cv">
+                          <label class="btn btn-primary btn-file">
+                              Cargar<input type="file" @change="onCV" style="display: none;" id='cv'>
+                          </label>
                           <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                         </td>
                       </tr>
