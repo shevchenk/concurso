@@ -86,7 +86,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <div class="box-body">
                   <div class="form-group">
                     <label>DNI:</label>
-                    <input type="text" class="form-control" v-model='alumno.dni' placeholder="Ingrese DNI"
+                    <input type="text" class="form-control" v-model='alumno.dni'
                     v-validate.initial="alumno.dni" data-rules="required|numeric|digits:8" :class="{'input': true, 'is-danger': errors.has('alumno.dni') }">
                     <i v-show="errors.has('alumno.dni')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.dni')" class="help is-danger">{{ errors.first('alumno.dni') }}</span>
@@ -94,7 +94,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   </div>
                   <div class="form-group">
                     <label>Paterno:</label>
-                    <input type="text" class="form-control" v-model='alumno.paterno' placeholder="Ingrese Paterno"
+                    <input type="text" class="form-control" v-model='alumno.paterno'
                     v-validate.initial="alumno.paterno" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.paterno') }">
                     <i v-show="errors.has('alumno.paterno')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.paterno')" class="help is-danger">{{ errors.first('alumno.paterno') }}</span>
@@ -102,14 +102,14 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   </div>
                   <div class="form-group">
                     <label>Materno:</label>
-                    <input type="text" class="form-control" v-model='alumno.materno' placeholder="Ingrese Materno"
+                    <input type="text" class="form-control" v-model='alumno.materno'
                     v-validate.initial="alumno.materno" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.materno') }">
                     <i v-show="errors.has('alumno.materno')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.materno')" class="help is-danger">{{ errors.first('alumno.materno') }}</span>
                   </div>
                   <div class="form-group">
                     <label>Nombre(s):</label>
-                    <input type="text" class="form-control" v-model='alumno.nombres' placeholder="Ingrese Nombres"
+                    <input type="text" class="form-control" v-model='alumno.nombres'
                     v-validate.initial="alumno.nombres" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.nombres') }">
                     <i v-show="errors.has('alumno.nombres')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.nombres')" class="help is-danger">{{ errors.first('alumno.nombres') }}</span>
@@ -133,7 +133,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <div class="box-body">
                   <div class="form-group">
                     <label>Dirección:</label>
-                    <input type="text" class="form-control" v-model='alumno.direccion' placeholder="Ingrese Dirección"
+                    <input type="text" class="form-control" v-model='alumno.direccion'
                     v-validate.initial="alumno.direccion" data-rules="required|max:100" :class="{'input': true, 'is-danger': errors.has('alumno.direccion') }">
                     <i v-show="errors.has('alumno.direccion')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.direccion')" class="help is-danger">{{ errors.first('alumno.direccion') }}</span>
@@ -142,21 +142,21 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <div class="form-group">
                     <label>Departamento:</label>
                     <br>
-                    <select v-model="alumno.departamento" onchange="app.mostrarProvincias()" class="form-control col-md-12" id="departamento" nombre="departamento" placeholder="Seleccione Departamento">
+                    <select v-model="alumno.departamento" onchange="app.mostrarProvincias()" class="form-control col-md-12" id="departamento" nombre="departamento">
                       <option value="" selected>.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Provincia:</label>
                     <br>
-                    <select v-model="alumno.provincia" onchange="app.mostrarDistritos()" class="form-control" id="provincia" nombre="provincia" placeholder="Seleccione Provincia">
+                    <select v-model="alumno.provincia" onchange="app.mostrarDistritos()" class="form-control" id="provincia" nombre="provincia">
                       <option value="" selected>.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Distrito:</label>
                     <br>
-                    <select v-model="alumno.distrito" onchange="app.getDistrito()" class="form-control col-md-12" id="distrito" nombre="distrito" placeholder="Seleccione Distrito">
+                    <select v-model="alumno.distrito" onchange="app.getDistrito()" class="form-control col-md-12" id="distrito" nombre="distrito">
                       <option value="" selected>.::Seleccione::.</option>
                     </select>
                   </div>
@@ -194,7 +194,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <th class="col-md-1" style="text-align:center;">[]</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tr_academicos">
                   <tr v-for="(item, index) in alumno.datos_academicos">
                     <td>
                         <select v-model='alumno.datos_academicos[item].tipo_academico_p' name="slct_tipo_grado">
@@ -205,20 +205,20 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         </select>
                     </td>
                     <td>
-                        <textarea class="form-control" v-model='alumno.datos_academicos[item].universidad_p' id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad"></textarea>
+                        <textarea class="form-control" v-model='alumno.datos_academicos[item].universidad_p' id="txt_universidad_p" name="txt_universidad_p[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                     </td>
                     <td>
-                        <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional"></textarea>
+                        <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                     </td>
                     <td>
-                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p' placeholder="Ingrese Año de Expedición del Diploma"
+                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p'
                         v-validate.initial="alumno.datos_academicos[item].anio_diploma_p" data-rules="required|numeric|digits:4" :class="{'input': true, 'is-danger': errors.has('alumno.datos_academicos[item].anio_diploma_p') }">
                         <i v-show="errors.has('alumno.datos_academicos[item].anio_diploma_p')" class="fa fa-warning"></i>
                         <span v-show="errors.has('alumno.datos_academicos[item].anio_diploma_p')" class="help is-danger">{{ errors.first('alumno.datos_academicos[item].anio_diploma_p') }}</span>
 
                     </td>
                     <td>
-                        <input type="text" v-model='alumno.datos_academicos[item].archivo' value=''>
+                        <input type="hidden" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
                         <input type="file" onchange="app.onGrado(event,{{item}});" id="grado" name="grado[]">
                         <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                     </td>
@@ -262,19 +262,19 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                   <tr v-for="(item, index) in alumno.publicaciones">
                       <td>
-                          <textarea class="form-control" v-model='alumno.publicaciones[item].articulo' id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
+                          <textarea class="form-control" v-model='alumno.publicaciones[item].articulo' id="txt_articulo" name="txt_articulo[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                       </td>
                       <td>
-                          <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" placeholder="Título Revista"></textarea>
+                          <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                       </td>
-                      <td> 
-                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion' placeholder="Ingrese Año de Publicación"
+                      <td>
+                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion'
                           v-validate.initial="alumno.publicaciones[item].publicacion" data-rules="required|numeric|digits:4" :class="{'input': true, 'is-danger': errors.has('alumno.publicaciones[item].publicacion') }">
                           <i v-show="errors.has('alumno.publicaciones[item].publicacion')" class="fa fa-warning"></i>
                           <span v-show="errors.has('alumno.publicaciones[item].publicacion')" class="help is-danger">{{ errors.first('alumno.publicaciones[item].publicacion') }}</span>
                       </td>
                       <td>
-                           <input type="text" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
+                           <input type="hidden" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
                            <input type="file" onchange="app.onRevista(event,{{item}});" id="revista" name="revista[]">
                            <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                       </td>
@@ -308,21 +308,21 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <div class="form-group">
                     <label>Sede:</label>
                     <br>
-                    <select v-model="alumno.sede" onchange="app.mostrarCarreras()" class="form-control" id="sede" nombre="sede[]" placeholder="Seleccione Sede" multiple>
+                    <select v-model="alumno.sede" onchange="app.mostrarCarreras()" class="form-control" id="sede" nombre="sede[]" multiple>
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Carrera:</label>
                     <br>
-                    <select v-model="alumno.carrera" onchange="app.mostrarCursos()" class="form-control" id="carrera" nombre="carrera[]" placeholder="Seleccione Carrera" multiple>
+                    <select v-model="alumno.carrera" onchange="app.mostrarCursos()" class="form-control" id="carrera" nombre="carrera[]" multiple>
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Curso:</label>
                     <br>
-                    <select v-model="alumno.curso" onchange="app.getCurso()" class="form-control" id="curso" nombre="curso[]" placeholder="Seleccione Curso" multiple>
+                    <select v-model="alumno.curso" onchange="app.getCurso()" class="form-control" id="curso" nombre="curso[]" multiple>
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
@@ -423,18 +423,17 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr v-for="(item, index) in alumno.experiencias_docente">
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e'placeholder="Ingrese   Universidad"
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e'
                             v-validate.initial="alumno.experiencias_docente[item].universidad_e" data-rules="required|max:100" :class="{'input': true, 'is-danger': errors.has('alumno.experiencias_docente[item].universidad_e') }">
                           <i v-show="errors.has('alumno.experiencias_docente[item].universidad_e')" class="fa fa-warning"></i>
                           <span v-show="errors.has('alumno.experiencias_docente[item].universidad_e')" class="help is-danger">{{ errors.first('alumno.experiencias_docente[item].universidad_e') }}</span>
 
                         </td>
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e' placeholder="Ingrese Años"
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e'
                             v-validate.initial="alumno.experiencias_docente[item].anio_e" data-rules="required|numeric|max:2" :class="{'input': true, 'is-danger': errors.has('alumno.experiencias_docente[item].anio_e') }">
                             <i v-show="errors.has('alumno.experiencias_docente[item].anio_e')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.experiencias_docente[item].anio_e')" class="help is-danger">{{ errors.first('alumno.experiencias_docente[item].anio_e') }}</span>
-
                         </td>
                         <td>
                             <a @click="removeExperienciaDocente(item)" class="btn btn-danger btn-sm">
@@ -475,19 +474,19 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.universidad_el' placeholder="Ingrese Universidad"
+                          <input type="text" class="form-control" v-model='alumno.universidad_el'
                           v-validate.initial="alumno.universidad_el" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.universidad_el') }">
                             <i v-show="errors.has('alumno.universidad_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.universidad_el')" class="help is-danger">{{ errors.first('alumno.universidad_el') }}</span>
                         </td>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.cargo_el' placeholder="Ingrese Cargo Actual"
+                          <input type="text" class="form-control" v-model='alumno.cargo_el'
                           v-validate.initial="alumno.cargo_el" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.cargo_el') }">
                             <i v-show="errors.has('alumno.cargo_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.cargo_el')" class="help is-danger">{{ errors.first('alumno.cargo_el') }}</span>
                         </td>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.anio_el' placeholder="Ingrese Años"
+                          <input type="text" class="form-control" v-model='alumno.anio_el'
                           v-validate.initial="alumno.anio_el" data-rules="required|numeric|max:2" :class="{'input': true, 'is-danger': errors.has('alumno.anio_el') }">
                             <i v-show="errors.has('alumno.anio_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.anio_el')" class="help is-danger">{{ errors.first('alumno.anio_el') }}</span>

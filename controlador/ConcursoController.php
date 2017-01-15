@@ -190,10 +190,16 @@ class ConcursoController extends \BaseController
                 $concursoAcademico->titulo=$datos_academicos[$i]['titulo_p'];
                 $concursoAcademico->anio=$datos_academicos[$i]['anio_diploma_p'];
                 $concursoAcademico->save();
+
+                if ( isset($datos_academicos[$i]['archivo']) AND trim($datos_academicos[$i]['archivo'])!='' ) {
+                    $cv = $datos_academicos[$i]['archivo'];
+                    $url_cv = 'upload/'.$dni . "/aca".$concursoAcademico->id."." ;
+                    $this->fileToFile($cv, $dni, $url_cv);
+                }
             }
         }
 
-        if(count($experiencias_docente)>0 AND isset($datos_academicos[0]['universidad_e'])){
+        if(count($experiencias_docente)>0 AND isset($experiencias_docente[0]['universidad_e'])){
             for($i=0; $i<count($experiencias_docente); $i++){
                 $concursoExperiencia= new ConcursoExperiencia;
                 $concursoExperiencia->concurso_registro_id=$concurso->id;
@@ -203,7 +209,7 @@ class ConcursoController extends \BaseController
             }
         }
 
-        if(count($publicaciones)>0 AND isset($datos_academicos[0]['articulo'])){
+        if(count($publicaciones)>0 AND isset($publicaciones[0]['articulo'])){
             for($i=0; $i<count($publicaciones); $i++){
                 $concursoPublicacion= new ConcursoPublicacion;
                 $concursoPublicacion->concurso_registro_id=$concurso->id;
@@ -211,6 +217,12 @@ class ConcursoController extends \BaseController
                 $concursoPublicacion->revista=$publicaciones[$i]['revista'];
                 $concursoPublicacion->anio=$publicaciones[$i]['publicacion'];
                 $concursoPublicacion->save();
+
+                if ( isset($publicaciones[$i]['archivo']) AND trim($publicaciones[$i]['archivo'])!='' ) {
+                    $cv = $publicaciones[$i]['archivo'];
+                    $url_cv = 'upload/'.$dni . "/pub".$concursoPublicacion->id."." ;
+                    $this->fileToFile($cv, $dni, $url_cv);
+                }
             }
         }
 

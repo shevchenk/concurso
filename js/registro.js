@@ -209,8 +209,6 @@ Vue.config.debug = true;
                             alert("Se registro con éxito a:"+response[0]);
                             $("#form").submit();
                         });
-                    } else {
-                        //alert('Not Submitted')
                     }
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
@@ -450,7 +448,36 @@ Vue.config.debug = true;
                             $("#"+etiqueta).focus(); 
                         }
                     }
-                }
+                },
+                validaDni:function(e,id){ 
+                    tecla = (document.all) ? e.keyCode : e.which;//captura evento teclado
+                    if (tecla==8 || tecla==0) return true;//8 barra, 0 flechas desplaz
+                    if($('#'+id).val().length==8)return false;
+                    patron = /\d/; // Solo acepta números
+                    te = String.fromCharCode(tecla); 
+                    return patron.test(te);
+                },
+                validaLetras:function(e) { // 1
+                    tecla = (document.all) ? e.keyCode : e.which; // 2
+                    if (tecla==8 || tecla==0) return true;//8 barra, 0 flechas desplaz
+                    patron =/[A-Za-zñÑáéíóúÁÉÍÓÚ\s]/; // 4 ,\s espacio en blanco, patron = /\d/; // Solo acepta números, patron = /\w/; // Acepta números y letras, patron = /\D/; // No acepta números, patron =/[A-Za-z\s]/; //sin ñÑ
+                    te = String.fromCharCode(tecla); // 5
+                    return patron.test(te); // 6
+                },
+                validaAlfanumerico:function(e) { // 1
+                    tecla = (document.all) ? e.keyCode : e.which; // 2
+                    if (tecla==8 || tecla==0 || tecla==46) return true;//8 barra, 0 flechas desplaz
+                    patron =/[A-Za-zñÑáéíóúÁÉÍÓÚ@.,_\-\s\d]/; // 4 ,\s espacio en blanco, patron = /\d/; // Solo acepta números, patron = /\w/; // Acepta números y letras, patron = /\D/; // No acepta números, patron =/[A-Za-z\s]/; //sin ñÑ
+                    te = String.fromCharCode(tecla); // 5
+                    return patron.test(te); // 6
+                },
+                validaNumeros:function(e) { // 1
+                    tecla = (document.all) ? e.keyCode : e.which; // 2
+                    if (tecla==8 || tecla==0 || tecla==46) return true;//8 barra, 0 flechas desplaz
+                    patron = /\d/; // Solo acepta números
+                    te = String.fromCharCode(tecla); // 5
+                    return patron.test(te); // 6
+                },
             },
             ready: function(){
                 this.slctGlobalHtml("departamento,#provincia,#distrito",'simple');
