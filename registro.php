@@ -154,7 +154,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                   <tr v-for="(item, index) in alumno.datos_academicos">
                     <td>
-                        <select name="slct_tipo_grado">
+                        <select v-model='alumno.datos_academicos[item].tipo_academico_p' name="slct_tipo_grado">
                           <option value="">.::Seleccione::.</option>
                           <option value="1">Pre Grado</option>
                           <option value="2">Maestro o Magister</option>
