@@ -197,9 +197,8 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody id="tr_academicos">
                   <tr v-for="(item, index) in alumno.datos_academicos">
                     <td>
-                        <select v-model='alumno.datos_academicos[item].tipo_academico_p' name="slct_tipo_grado">
-                          <option value="">.::Seleccione::.</option>
-                          <option value="1">Pre Grado</option>
+                        <select v-model='alumno.datos_academicos[item].tipo_academico_p' id="slct_tipo_grado[]" name="slct_tipo_grado[]">
+                          <option value="1" selected>Pre Grado</option>
                           <option value="2">Maestro o Magister</option>
                           <option value="3">Doctor</option>
                         </select>
@@ -211,13 +210,18 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                     </td>
                     <td>
-                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p'>
+                        <input type="text" maxlength="4" onkeypress="return app.validaNumeros(event)" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p'>
 
                     </td>
                     <td>
                         <input type="hidden" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
-                        <input type="file" onchange="app.onGrado(event,{{item}});" id="grado" name="grado[]">
-                        <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                        <label class="btn bg-olive btn-flat margin">
+                              <i class="fa fa-file-pdf-o fa-lg"></i>
+                              <i class="fa fa-file-word-o fa-lg"></i>
+                              <i class="fa fa-file-excel-o fa-lg"></i>
+                              <i class="fa fa-file-image-o fa-lg"></i>
+                              <input type="file" style="display: none;" onchange="app.onGrado(event,{{item}});" id="grado" name="grado[]">
+                          </label>
                     </td>
                     <td>
                         <a @click="removeDatos(item)" class="btn btn-danger btn-sm">
@@ -265,12 +269,17 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                           <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                       </td>
                       <td>
-                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion'>
+                          <input type="text" maxlength="4" onkeypress="return app.validaNumeros(event)" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion'>
                       </td>
                       <td>
                            <input type="hidden" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
-                           <input type="file" onchange="app.onRevista(event,{{item}});" id="revista" name="revista[]">
-                           <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                           <label class="btn bg-olive btn-flat margin">
+                              <i class="fa fa-file-pdf-o fa-lg"></i>
+                              <i class="fa fa-file-word-o fa-lg"></i>
+                              <i class="fa fa-file-excel-o fa-lg"></i>
+                              <i class="fa fa-file-image-o fa-lg"></i>
+                              <input type="file" style="display: none;" onchange="app.onRevista(event,{{item}});" id="revista" name="revista[]">
+                          </label>
                       </td>
                       <td>
                           <a @click="removePublicaciones(item)" class="btn btn-danger btn-sm">
@@ -417,11 +426,11 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr v-for="(item, index) in alumno.experiencias_docente">
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e'>
+                            <input type="text" onkeypress="return app.validaAlfanumerico(event)" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e'>
 
                         </td>
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e'>
+                            <input type="text" maxlength="2" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.experiencias_docente[item].anio_e'>
                         </td>
                         <td>
                             <a @click="removeExperienciaDocente(item)" class="btn btn-danger btn-sm">
@@ -462,28 +471,31 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.universidad_el'
+                          <input type="text" onkeypress="return app.validaAlfanumerico(event)" class="form-control" v-model='alumno.universidad_el'
                           v-validate.initial="alumno.universidad_el" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.universidad_el') }">
                             <i v-show="errors.has('alumno.universidad_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.universidad_el')" class="help is-danger">{{ errors.first('alumno.universidad_el') }}</span>
                         </td>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.cargo_el'
+                          <input type="text" onkeypress="return app.validaAlfanumerico(event)" class="form-control" v-model='alumno.cargo_el'
                           v-validate.initial="alumno.cargo_el" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.cargo_el') }">
                             <i v-show="errors.has('alumno.cargo_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.cargo_el')" class="help is-danger">{{ errors.first('alumno.cargo_el') }}</span>
                         </td>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.anio_el'
+                          <input type="text" maxlength="2" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.anio_el'
                           v-validate.initial="alumno.anio_el" data-rules="required|numeric|max:2" :class="{'input': true, 'is-danger': errors.has('alumno.anio_el') }">
                             <i v-show="errors.has('alumno.anio_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.anio_el')" class="help is-danger">{{ errors.first('alumno.anio_el') }}</span>
                         </td>
                         <td>
-                          <label class="btn btn-primary btn-file">
-                              Cargar<input type="file" @change="onCV" style="display: none;" id='cv'>
+                          <label class="btn bg-olive btn-flat margin">
+                              <i class="fa fa-file-pdf-o fa-lg"></i>
+                              <i class="fa fa-file-word-o fa-lg"></i>
+                              <i class="fa fa-file-excel-o fa-lg"></i>
+                              <i class="fa fa-file-image-o fa-lg"></i>
+                              <input type="file" @change="onCV" style="display: none;" id='cv'>
                           </label>
-                          <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                         </td>
                       </tr>
               </table>
