@@ -62,19 +62,19 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <div class="box-body">
                   <div class="form-group">
                     <label>DNI:</label>
-                    <input type="text" class="form-control" v-model='alumno.dni' id="txt_dni" name="txt_dni" placeholder="Ingrese DNI">
+                    <input type="text" class="form-control" v-model='alumno.dni' id="txt_dni" name="txt_dni" placeholder="Ingrese DNI" onkeypress="return app.validaDni(event,'txt_dni')">
                   </div>
                   <div class="form-group">
                     <label>Paterno:</label>
-                    <input type="text" class="form-control" v-model='alumno.paterno' id="txt_paterno" name="txt_paterno" placeholder="Ingrese Paterno">
+                    <input type="text" class="form-control" v-model='alumno.paterno' id="txt_paterno" name="txt_paterno" placeholder="Ingrese Paterno" onkeypress="return app.validaLetras(event)">
                   </div>
                   <div class="form-group">
                     <label>Materno:</label>
-                    <input type="text" class="form-control" v-model='alumno.materno' id="txt_materno" name="txt_materno" placeholder="Ingrese Materno">
+                    <input type="text" class="form-control" v-model='alumno.materno' id="txt_materno" name="txt_materno" placeholder="Ingrese Materno" onkeypress="return app.validaLetras(event)">
                   </div>
                   <div class="form-group">
                     <label>Nombre(s):</label>
-                    <input type="text" class="form-control" v-model='alumno.nombres' id="txt_nombres" name="txt_nombres" placeholder="Ingrese Nombres">
+                    <input type="text" class="form-control" v-model='alumno.nombres' id="txt_nombres" name="txt_nombres" placeholder="Ingrese Nombres" onkeypress="return app.validaLetras(event)">
                   </div>
                 </div>
               </form>
@@ -152,7 +152,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <th class="col-md-1" style="text-align:center;">[]</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tr_academicos">
                   <tr v-for="(item, index) in alumno.datos_academicos">
                     <td>
                         <select v-model='alumno.datos_academicos[item].tipo_academico_p' name="slct_tipo_grado">
@@ -163,16 +163,16 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         </select>
                     </td>
                     <td>
-                        <textarea class="form-control" v-model='alumno.datos_academicos[item].universidad_p' id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad"></textarea>
+                        <textarea class="form-control" v-model='alumno.datos_academicos[item].universidad_p' id="txt_universidad_p" name="txt_universidad_p[]" placeholder="Ingrese Universidad" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                     </td>
                     <td>
-                        <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional"></textarea>
+                        <textarea class="form-control" v-model='alumno.datos_academicos[item].titulo_p' id="txt_titulo_p" name="txt_titulo_p[]" placeholder="Ingrese Título Profesional" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                     </td>
                     <td>
-                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p' id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
+                        <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p' id="txt_anio_diploma_p" name="txt_anio_diploma_p[]" placeholder="Ingrese Año de Expedición del Diploma" maxlength="4" onkeypress="return app.validaNumeros(event)">
                     </td>
                     <td>
-                        <input type="text" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
+                        <input type="hidden" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
                         <input type="file" onchange="app.onGrado(event,{{item}});" id="grado" name="grado[]">
                         <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                     </td>
@@ -216,16 +216,16 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                   <tr v-for="(item, index) in alumno.publicaciones">
                       <td>
-                          <textarea class="form-control" v-model='alumno.publicaciones[item].articulo' id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo"></textarea>
+                          <textarea class="form-control" v-model='alumno.publicaciones[item].articulo' id="txt_articulo" name="txt_articulo[]" placeholder="Ingrese Nombre del Artículo" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                       </td>
                       <td>
-                          <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" placeholder="Título Revista"></textarea>
+                          <textarea class="form-control" v-model='alumno.publicaciones[item].revista' id="txt_revista" name="txt_revista[]" placeholder="Título Revista" onkeypress="return app.validaAlfanumerico(event)"></textarea>
                       </td>
                       <td> 
-                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion' id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
+                          <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion' id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación" maxlength="4" onkeypress="return app.validaNumeros(event)">
                       </td>
                       <td>
-                           <input type="text" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
+                           <input type="hidden" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
                            <input type="file" onchange="app.onRevista(event,{{item}});" id="revista" name="revista[]">
                            <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                       </td>
@@ -374,10 +374,10 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr v-for="(item, index) in alumno.experiencias_docente">
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e' id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese   Universidad">
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].universidad_e' id="txt_universidad_e" name="txt_universidad_e[]" placeholder="Ingrese   Universidad" onkeypress="return app.validaAlfanumerico(event)">
                         </td>
                         <td>
-                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e' id="txt_anio_e" name="txt_anio_e[]" placeholder="Ingrese Años">
+                            <input type="text" class="form-control" v-model='alumno.experiencias_docente[item].anio_e' id="txt_anio_e" name="txt_anio_e[]" placeholder="Ingrese Años" maxlength="2" onkeypress="return app.validaNumeros(event)">
                         </td>
                         <td>
                             <a @click="removeExperienciaDocente(item)" class="btn btn-danger btn-sm">
@@ -418,13 +418,13 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                 <tbody>
                     <tr>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.universidad_el' id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad">
+                          <input type="text" class="form-control" v-model='alumno.universidad_el' id="txt_universidad_el" name="txt_universidad_el" placeholder="Ingrese Universidad" onkeypress="return app.validaAlfanumerico(event)">
                         </td>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual">
+                          <input type="text" class="form-control" v-model='alumno.cargo_el' id="txt_cargo_el" name="txt_cargo_el" placeholder="Ingrese Cargo Actual" onkeypress="return app.validaAlfanumerico(event)">
                         </td>
                         <td>
-                          <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años">
+                          <input type="text" class="form-control" v-model='alumno.anio_el' id="txt_anio_el" name="txt_anio_el" placeholder="Ingrese Años" maxlength="2" onkeypress="return app.validaNumeros(event)">
                         </td>
                         <td>
                           <input type="file" @change="onCV" id="cv">

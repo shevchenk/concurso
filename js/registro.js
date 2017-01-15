@@ -160,12 +160,46 @@ Vue.config.debug = true;
                     //añadir las imagenes antes de enviar
                     //this.alumno.imagen=this.imagen;
                     //this.alumno.imagen_dni=this.imagen_dni;
-
-                    //grado y revista
-                    this.$http.post('registrar',app.alumno, function (response) {
-                        alert("Se registro con éxito a:"+response[0]);
-                        $("#form").submit();
+                    var valor=true;
+                    if(app.alumno.dni==''){
+                        alert('Ingrese DNI');
+                        valor=false;
+                    }
+                    else if(app.alumno.paterno==''){
+                        alert('Ingrese Paterno');
+                        valor=false;
+                    }
+                    else if(app.alumno.materno==''){
+                        alert('Ingrese Materno');
+                        valor=false;
+                    }
+                    
+                    $("#tr_academicos tr").each(function() {
+                       if($(this).find("select").val()=='' && valor==true){
+                        alert('Seleccione Tipo Grado');
+                        valor=false;
+                       }
+                       else if( $(this).find("#txt_universidad_p").val()=='' && valor==true ){
+                        alert('Ingrese Universidad');
+                        valor=false;
+                       }
+                       else if( $(this).find("#txt_titulo_p").val()=='' && valor==true ){
+                        alert('Ingrese Título');
+                        valor=false;
+                       }
+                       else if( $(this).find("#txt_anio_diploma_p").val()=='' && valor==true ){
+                        alert('Ingrese Año de Expedición de Diploma');
+                        valor=false;
+                       }
+                       
                     });
+
+                    if(valor){
+                        this.$http.post('registrar',app.alumno, function (response) {
+                            alert("Se registro con éxito a:"+response[0]);
+                            $("#form").submit();
+                        });
+                    }
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
                 var html="";var disabled=''; var grupo='';
@@ -404,7 +438,36 @@ Vue.config.debug = true;
                             $("#"+etiqueta).focus(); 
                         }
                     }
-                }
+                },
+                validaDni:function(e,id){ 
+                    tecla = (document.all) ? e.keyCode : e.which;//captura evento teclado
+                    if (tecla==8 || tecla==0) return true;//8 barra, 0 flechas desplaz
+                    if($('#'+id).val().length==8)return false;
+                    patron = /\d/; // Solo acepta números
+                    te = String.fromCharCode(tecla); 
+                    return patron.test(te);
+                },
+                validaLetras:function(e) { // 1
+                    tecla = (document.all) ? e.keyCode : e.which; // 2
+                    if (tecla==8 || tecla==0) return true;//8 barra, 0 flechas desplaz
+                    patron =/[A-Za-zñÑáéíóúÁÉÍÓÚ\s]/; // 4 ,\s espacio en blanco, patron = /\d/; // Solo acepta números, patron = /\w/; // Acepta números y letras, patron = /\D/; // No acepta números, patron =/[A-Za-z\s]/; //sin ñÑ
+                    te = String.fromCharCode(tecla); // 5
+                    return patron.test(te); // 6
+                },
+                validaAlfanumerico:function(e) { // 1
+                    tecla = (document.all) ? e.keyCode : e.which; // 2
+                    if (tecla==8 || tecla==0 || tecla==46) return true;//8 barra, 0 flechas desplaz
+                    patron =/[A-Za-zñÑáéíóúÁÉÍÓÚ@.,_\-\s\d]/; // 4 ,\s espacio en blanco, patron = /\d/; // Solo acepta números, patron = /\w/; // Acepta números y letras, patron = /\D/; // No acepta números, patron =/[A-Za-z\s]/; //sin ñÑ
+                    te = String.fromCharCode(tecla); // 5
+                    return patron.test(te); // 6
+                },
+                validaNumeros:function(e) { // 1
+                    tecla = (document.all) ? e.keyCode : e.which; // 2
+                    if (tecla==8 || tecla==0 || tecla==46) return true;//8 barra, 0 flechas desplaz
+                    patron = /\d/; // Solo acepta números
+                    te = String.fromCharCode(tecla); // 5
+                    return patron.test(te); // 6
+                },
             },
             ready: function(){
                 this.slctGlobalHtml("departamento,#provincia,#distrito",'simple');
