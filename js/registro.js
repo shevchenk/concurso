@@ -75,25 +75,24 @@ Vue.config.debug = true;
                     reader.readAsDataURL(files[0]);
                 },
                 onGrado: function(e,t) {
-                    alert(t.id);
                     var files = e.target.files || e.dataTransfer.files;
                     if (!files.length)
                       return;
                     var image = new Image();
                     var reader = new FileReader();
                     reader.onload = (e) => {
-                        app.alumno.grado = e.target.result;
+                        app.alumno.datos_academicos[t].archivo = e.target.result;
                     };
                     reader.readAsDataURL(files[0]);
                 },
-                onRevista: function(e) {
+                onRevista: function(e,t) {
                     var files = e.target.files || e.dataTransfer.files;
                     if (!files.length)
                       return;
                     var image = new Image();
                     var reader = new FileReader();
                     reader.onload = (e) => {
-                        app.alumno.revista = e.target.result;
+                        app.alumno.publicaciones[t].archivo = e.target.result;
                     };
                     reader.readAsDataURL(files[0]);
                 },

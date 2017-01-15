@@ -172,8 +172,8 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         <input type="text" class="form-control fecha" v-model='alumno.datos_academicos[item].anio_diploma_p' id="txt_anio_diploma_p[]" name="txt_anio_diploma_p" placeholder="Ingrese Año de Expedición del Diploma">
                     </td>
                     <td>
-                        <input type="text" v-model='alumno.grado' id='grados' name="grados[]" value="">
-                        <input type="file" data-pos='{{item}}' onchange="app.onGrado(event,this);" id="grado" name="grado[]">
+                        <input type="text" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
+                        <input type="file" onchange="app.onGrado(event,{{item}});" id="grado" name="grado[]">
                         <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                     </td>
                     <td>
@@ -225,8 +225,9 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                           <input type="text" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion' id="txt_publicacion" name="txt_publicacion[]" placeholder="Ingrese Año de Publicación">
                       </td>
                       <td>
-                          <input type="file" @change="onRevista" id="revista" name="revista[]">
-                          <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
+                           <input type="text" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
+                           <input type="file" onchange="app.onRevista(event,{{item}});" id="revista" name="revista[]">
+                           <p class="help-block">Formatos Permitidos => PDF|WORD|JPG|PNG</p>
                       </td>
                       <td>
                           <a @click="removePublicaciones(item)" class="btn btn-danger btn-sm">
