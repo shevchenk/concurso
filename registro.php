@@ -214,11 +214,10 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
 
                     </td>
                     <td>
-                        <input type="hidden" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
+                        <input type="text" readonly class="form-control" v-model='alumno.datos_academicos[item].archivo' id='archivos' name="archivos[]" value="">
                         <label class="btn bg-olive btn-flat margin">
                               <i class="fa fa-file-pdf-o fa-lg"></i>
                               <i class="fa fa-file-word-o fa-lg"></i>
-                              <i class="fa fa-file-excel-o fa-lg"></i>
                               <i class="fa fa-file-image-o fa-lg"></i>
                               <input type="file" style="display: none;" onchange="app.onGrado(event,{{item}});" id="grado" name="grado[]">
                           </label>
@@ -272,11 +271,10 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                           <input type="text" maxlength="4" onkeypress="return app.validaNumeros(event)" class="form-control fecha" v-model='alumno.publicaciones[item].publicacion'>
                       </td>
                       <td>
-                           <input type="hidden" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
+                           <input type="text" readonly class="form-control" v-model='alumno.publicaciones[item].archivo' id='archivos' name="archivos[]" value="">
                            <label class="btn bg-olive btn-flat margin">
                               <i class="fa fa-file-pdf-o fa-lg"></i>
                               <i class="fa fa-file-word-o fa-lg"></i>
-                              <i class="fa fa-file-excel-o fa-lg"></i>
                               <i class="fa fa-file-image-o fa-lg"></i>
                               <input type="file" style="display: none;" onchange="app.onRevista(event,{{item}});" id="revista" name="revista[]">
                           </label>
@@ -465,7 +463,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                       <th class="col-md-6" style="text-align:center;">Universidad</th>
                       <th class="col-md-3" style="text-align:center;">Cargo Actual</th>
                       <th class="col-md-2" style="text-align:center;">Años</th>
-                      <th class="col-md-1" style="text-align:center;">Subir Hoja de Vida</th>
+                      <th class="col-md-1" style="text-align:center;">Subir Hoja de Vida - No Documentada</th>
                     </tr>
                  </thead>
                 <tbody>
@@ -489,10 +487,10 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                             <span v-show="errors.has('alumno.anio_el')" class="help is-danger">{{ errors.first('alumno.anio_el') }}</span>
                         </td>
                         <td>
+                          <input type="text" readonly class="form-control" v-model='alumno.cv' id='archivos' name="archivos[]" value="">
                           <label class="btn bg-olive btn-flat margin">
                               <i class="fa fa-file-pdf-o fa-lg"></i>
                               <i class="fa fa-file-word-o fa-lg"></i>
-                              <i class="fa fa-file-excel-o fa-lg"></i>
                               <i class="fa fa-file-image-o fa-lg"></i>
                               <input type="file" @change="onCV" style="display: none;" id='cv'>
                           </label>
