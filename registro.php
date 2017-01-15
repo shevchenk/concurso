@@ -463,7 +463,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                         </td>
                         <td>
                           <input type="text" class="form-control" v-model='alumno.cargo_el' placeholder="Ingrese Cargo Actual"
-                          v-validate.initial="alumno.cargo_el" data-rules="required|maz:50" :class="{'input': true, 'is-danger': errors.has('alumno.cargo_el') }">
+                          v-validate.initial="alumno.cargo_el" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.cargo_el') }">
                             <i v-show="errors.has('alumno.cargo_el')" class="fa fa-warning"></i>
                             <span v-show="errors.has('alumno.cargo_el')" class="help is-danger">{{ errors.first('alumno.cargo_el') }}</span>
                         </td>
