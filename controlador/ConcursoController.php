@@ -181,7 +181,7 @@ class ConcursoController extends \BaseController
             }
         }
 
-        if(count($datos_academicos)>0 AND isset($datos_academicos[0]['tipo_academico_p']) ){
+        if(count($datos_academicos)>0 AND isset($datos_academicos[0]['universidad_p']) ){
             for($i=0; $i<count($datos_academicos); $i++){
                 $concursoAcademico= new ConcursoAcademico;
                 $concursoAcademico->concurso_registro_id=$concurso->id;
