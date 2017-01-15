@@ -199,16 +199,19 @@ Vue.config.debug = true;
                 getDistrito: function(){
                     app.alumno.distrito=$("#distrito").val();
                 },
+                validate() {
+                  this.$validator.validateAll()
+                  return this.errors.any()
+                },
                 registro: function() {
-                    //añadir las imagenes antes de enviar
-                    //this.alumno.imagen=this.imagen;
-                    //this.alumno.imagen_dni=this.imagen_dni;
-
-                    //grado y revista
-                    this.$http.post('registrar',app.alumno, function (response) {
-                        //alert("Se registro con éxito a:"+response[0]);
-                        //$("#form").submit();
-                    });
+                    if(!this.validate()) {
+                        this.$http.post('registrar',app.alumno, function (response) {
+                            alert("Se registro con éxito a:"+response[0]);
+                            $("#form").submit();
+                        });
+                    } else {
+                        //alert('Not Submitted')
+                    }
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
                 var html="";var disabled=''; var grupo='';
