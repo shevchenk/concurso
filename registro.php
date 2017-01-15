@@ -94,7 +94,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   </div>
                   <div class="form-group">
                     <label>Paterno:</label>
-                    <input type="text" class="form-control" v-model='alumno.paterno'
+                    <input type="text" onkeypress="return app.validaLetras(event)" class="form-control" v-model='alumno.paterno'
                     v-validate.initial="alumno.paterno" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.paterno') }">
                     <i v-show="errors.has('alumno.paterno')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.paterno')" class="help is-danger">{{ errors.first('alumno.paterno') }}</span>
@@ -102,14 +102,14 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   </div>
                   <div class="form-group">
                     <label>Materno:</label>
-                    <input type="text" class="form-control" v-model='alumno.materno'
+                    <input type="text" onkeypress="return app.validaLetras(event)" class="form-control" v-model='alumno.materno'
                     v-validate.initial="alumno.materno" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.materno') }">
                     <i v-show="errors.has('alumno.materno')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.materno')" class="help is-danger">{{ errors.first('alumno.materno') }}</span>
                   </div>
                   <div class="form-group">
                     <label>Nombre(s):</label>
-                    <input type="text" class="form-control" v-model='alumno.nombres'
+                    <input type="text" onkeypress="return app.validaLetras(event)" class="form-control" v-model='alumno.nombres'
                     v-validate.initial="alumno.nombres" data-rules="required|max:50" :class="{'input': true, 'is-danger': errors.has('alumno.nombres') }">
                     <i v-show="errors.has('alumno.nombres')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.nombres')" class="help is-danger">{{ errors.first('alumno.nombres') }}</span>
@@ -356,33 +356,33 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                       </tr>
                       <tr>
                         <th>Mañana</th>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[0]' name="lunes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[1]' name="martes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[2]' name="miercoles[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[3]' name="jueves[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[4]' name="viernes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[5]' name="sabado[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.manania[6]' name="domingo[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[0]' name="lunes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[1]' name="martes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[2]' name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[3]' name="jueves[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[4]' name="viernes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[5]' name="sabado[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.manania[6]' name="domingo[]" value="0"></td>
                       </tr>
                       <tr>
                         <th>Tarde</th>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[0]' name="lunes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[1]' name="martes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[2]' name="miercoles[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[3]' name="jueves[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[4]' name="viernes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[5]' name="sabado[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.tarde[6]' name="domingo[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[0]' name="lunes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[1]' name="martes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[2]' name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[3]' name="jueves[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[4]' name="viernes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[5]' name="sabado[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.tarde[6]' name="domingo[]" value="0"></td>
                       </tr>
                       <tr>
                         <th>Noche</th>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[0]' name="lunes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[1]' name="martes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[2]' name="miercoles[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[3]' name="jueves[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[4]' name="viernes[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[5]' name="sabado[]" value="0"></td>
-                        <td><input type="numeric" class="form-control" v-model='alumno.noche[6]' name="domingo[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[0]' name="lunes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[1]' name="martes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[2]' name="miercoles[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[3]' name="jueves[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[4]' name="viernes[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[5]' name="sabado[]" value="0"></td>
+                        <td><input type="numeric" onkeypress="return app.validaNumeros(event)" class="form-control" v-model='alumno.noche[6]' name="domingo[]" value="0"></td>
                       </tr>
 
                     </table>
