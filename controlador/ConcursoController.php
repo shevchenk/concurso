@@ -127,12 +127,13 @@ class ConcursoController extends \BaseController
             list($type, $cv) = explode(';', $cv);
             list(, $type) = explode('/', $type);
             if ($type=='jpeg') $type='jpg';
-            if ($type=='document') $type='docx';
+            if ($type=='vnd.openxmlformats-officedocument.wordprocessingml.document') $type='docx';
             if ($type=='sheet') $type='xlsx';
             list(, $cv)      = explode(',', $cv);
             $cv = base64_decode($cv);
             $url_cv = $uploadFolder . '/' . "cv." . $type;
             file_put_contents($url_cv , $cv);
+            //return ['0'=>$url_cv,'1'=>$type];
         }
 
         DB::beginTransaction();
