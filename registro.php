@@ -114,6 +114,20 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                     <i v-show="errors.has('alumno.nombres')" class="fa fa-warning"></i>
                     <span v-show="errors.has('alumno.nombres')" class="help is-danger">{{ errors.first('alumno.nombres') }}</span>
                   </div>
+                  <div class="form-group">
+                    <label>Celular:</label>
+                    <input type="text" class="form-control" v-model='alumno.celular'
+                    v-validate.initial="alumno.celular" data-rules="required|numeric|max:15" :class="{'input': true, 'is-danger': errors.has('alumno.celular') }">
+                    <i v-show="errors.has('alumno.celular')" class="fa fa-warning"></i>
+                    <span v-show="errors.has('alumno.celular')" class="help is-danger">{{ errors.first('alumno.celular') }}</span>
+                  </div>
+                  <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control" v-model='alumno.email'
+                    v-validate.initial="alumno.email" data-rules="required|email|max:80" :class="{'input': true, 'is-danger': errors.has('alumno.email') }">
+                    <i v-show="errors.has('alumno.email')" class="fa fa-warning"></i>
+                    <span v-show="errors.has('alumno.email')" class="help is-danger">{{ errors.first('alumno.email') }}</span>
+                  </div>
                 </div>
               </form>
             </div>
@@ -309,14 +323,14 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
                   <div class="form-group">
                     <label>Sede:</label>
                     <br>
-                    <select v-model="alumno.sede" onchange="app.mostrarCarreras()" class="form-control" id="sede" nombre="sede[]" multiple>
+                    <select v-model="alumno.sede" onchange="app.getSede()" class="form-control" id="sede" nombre="sede[]" multiple>
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Carrera:</label>
                     <br>
-                    <select v-model="alumno.carrera" onchange="app.mostrarCursos()" class="form-control" id="carrera" nombre="carrera[]" multiple>
+                    <select v-model="alumno.carrera" onchange="app.getCarrera()" class="form-control" id="carrera" nombre="carrera[]" multiple>
                       <option value="">.::Seleccione::.</option>
                     </select>
                   </div>
@@ -334,7 +348,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
           </div>
           <!-- /.box -->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="display: none;">
           <div class="box box-primary">
             <div class="box-header with-border">
               <div class="col-md-10">
@@ -452,7 +466,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
           <div class="box box-primary">
             <div class="box-header with-border">
               <i class="fa fa-institution"></i>
-              <h3 class="box-title">EXPERIENCIA - LABORAL
+              <h3 class="box-title">INSTITUCIÓN - LABORAL
               </h3>
             </div>
             <!-- /.box-header -->
@@ -460,7 +474,7 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
               <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                      <th class="col-md-6" style="text-align:center;">Universidad</th>
+                      <th class="col-md-6" style="text-align:center;">Institución</th>
                       <th class="col-md-3" style="text-align:center;">Cargo Actual</th>
                       <th class="col-md-2" style="text-align:center;">Años</th>
                       <th class="col-md-1" style="text-align:center;">Subir Hoja de Vida - No Documentada</th>
@@ -548,4 +562,3 @@ header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Author
 
 </body>
 </html>
-s

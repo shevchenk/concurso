@@ -51,164 +51,70 @@ Vue.config.debug = true;
             },
             el: '#app',
             data: {
-                sedes:[],
-                carreras:[],
-                departamentos:[],
-                provincias:[],
-                distritos:[],
-                asignaturas:[],
+                archivos:[],
                 alumno:{
                     dni:'',
                     paterno:'',
                     materno:'',
                     nombres:'',
-                    direccion:'',
-                    departamento:'',
-                    provincia:'',
-                    distrito:'',
-                    email:'',
-                    celular:'',
-                    //datos_academicos:'',
-                    //publicaciones:'',
-                    sede:'',
-                    carrera:'',
-                    curso:'',
-                    total_horas:'',
-                    //experiencias:'',
-                    universidad_el:'',
-                    anio_el:'',
-                    cargo_el:'',
-
-                    manania:[{}],
-                    tarde:[{}],
-                    noche:[{}],
-                    datos_academicos:[{}],
-                    publicaciones:[{}],
-                    experiencias_docente:[{}],
-                    //experiencias_laboral:,
                 },
             },
             methods: {
-                addDatos:function(){
-                    app.alumno.datos_academicos.push({});
-                },
-                removeDatos:function(id){
-                    app.alumno.datos_academicos.splice( id, 1 );
-                },
-                addPublicaciones:function(){
-                    app.alumno.publicaciones.push({});
-                },
-                removePublicaciones:function(id){
-                    app.alumno.publicaciones.splice( id, 1 );
-                },
-                addExperienciasDocente:function(){
-                    app.alumno.experiencias_docente.push({});
-                },
-                removeExperienciaDocente:function(id){
-                    app.alumno.experiencias_docente.splice( id, 1 );
-                },
-                onCV: function(e) {
-                    var files = e.target.files || e.dataTransfer.files;
-                    if (!files.length)
-                      return;
-
-                    var image = new Image();
-                    var reader = new FileReader();
-                    reader.onload = (e) => {
-                        app.alumno.cv = e.target.result;
-                    };
-                    reader.readAsDataURL(files[0]);
-                },
-                onGrado: function(e,t) {
-                    var files = e.target.files || e.dataTransfer.files;
-                    if (!files.length)
-                      return;
-                    var image = new Image();
-                    var reader = new FileReader();
-                    reader.onload = (e) => {
-                        app.alumno.datos_academicos[t].archivo = e.target.result;
-                    };
-                    reader.readAsDataURL(files[0]);
-                },
-                onRevista: function(e,t) {
-                    var files = e.target.files || e.dataTransfer.files;
-                    if (!files.length)
-                      return;
-                    var image = new Image();
-                    var reader = new FileReader();
-                    reader.onload = (e) => {
-                        app.alumno.publicaciones[t].archivo = e.target.result;
-                    };
-                    reader.readAsDataURL(files[0]);
-                },
-
-                mostrarDepartamentos: function() {
-                    this.$http.get('departamentos', function (response) {
-                        app.departamentos=response.departamentos;
-                        this.htmlListarSlct(app.departamentos,"departamento","simple");
-                    });
-                },
-                mostrarProvincias:function() {
-                    app.alumno.departamento=$("#departamento").val();
+                mostrarArchivos:function() {
                     var request = {
-                        departamentos: app.alumno.departamento,
+                        dni: app.alumno.dni,
                     };
-                    this.$http.get('provincias',request, function (response) {
-                        app.provincias=response.provincias;
-                        this.htmlListarSlct(app.provincias,"provincia","simple");
+                    this.$http.get('archivos',request, function (response) {
+                        app.archivos=response.archivos;
+                        this.htmlArchivos(app.archivos);
                     });
                 },
-                mostrarDistritos:function() {
-                    app.alumno.provincia=$("#provincia").val();
-                    var request = {
-                        provincias: app.alumno.provincia,
-                    };
-                    this.$http.get('distritos',request, function (response) {
-                        app.distritos=response.distritos;
-                        this.htmlListarSlct(app.distritos,"distrito","simple");
+                htmlArchivos:function(obj){
+                    var html=''; var daca=''; var drev='';
+                    $.each(obj,function(index,data){
+                        html+="<tr>";
+                        html+=" <td>";
+                        html+=  index*1+1;
+                        html+=" </td>";
+                        html+=" <td>";
+                        html+=  data.paterno;
+                        html+=" </td>";
+                        html+=" <td>";
+                        html+=  data.materno;
+                        html+=" </td>";
+                        html+=" <td>";
+                        html+=  data.nombres;
+                        html+=" </td>";
+                        html+=" <td>";
+                        html+=  data.dni;
+                        html+=" </td>";
+                        html+=" <td>";
+                        daca= data.academico.split(",");
+                        for (var i =0; i<daca.length; i++) {
+                            url="http://cpdtelesup.com/colegio/public/upload/"+data.dni+"/"+daca[i];
+                        html+=" <a class='btn bg-navy btn-sm' href='"+url+"' TARGET='_blank'>"+
+                                    "<i class='fa fa-cloud-download'></i>"+
+                                "</a>";
+                        }
+                        html+=" </td>";
+                        html+=" <td>";
+                        drev= data.revista.split(",");
+                        for (var i =0; i<drev.length; i++) {
+                            url="http://cpdtelesup.com/colegio/public/upload/"+data.dni+"/"+drev[i];
+                        html+=" <a class='btn bg-navy btn-sm' href='"+url+"' TARGET='_blank'>"+
+                                    "<i class='fa fa-cloud-download'></i>"+
+                                "</a>";
+                        }
+                        html+=" </td>";
+                        html+=" <td>";
+                            url="http://cpdtelesup.com/colegio/public/upload/"+data.dni+"/"+data.id;
+                        html+=" <a class='btn bg-navy btn-sm' href='"+url+"' TARGET='_blank'>"+
+                                    "<i class='fa fa-cloud-download'></i>"+
+                                "</a>";
+                        html+=" </td>";
+                        html+="</tr>";
                     });
-                },
-                mostrarSedes: function() {
-                    this.$http.get('sedes', function (response) {
-                        app.sedes=response.sedes;
-                        this.htmlListarSlct(app.sedes,"sede","multiple");
-                    });
-                },
-                mostrarCarreras: function() {
-                    this.$http.get('carreras', function (response) {
-                        app.carreras=response.carreras;
-                        this.htmlListarSlct(app.carreras,"carrera","multiple");
-                    });
-                },
-                mostrarCursos: function() {
-                    this.$http.get('cursos',function (response) {
-                        app.cursos=response.cursos;
-                        this.htmlListarSlct(app.cursos,"curso","multiple");
-                    });
-                },
-                getCurso: function(){
-                    app.alumno.curso=$("#curso").val();
-                },
-                getCarrera: function(){
-                    app.alumno.carrera=$("#carrera").val();
-                },
-                getSede: function(){
-                    app.alumno.sede=$("#sede").val();
-                },
-                getDistrito: function(){
-                    app.alumno.distrito=$("#distrito").val();
-                },
-                validate() {
-                  this.$validator.validateAll()
-                  return this.errors.any()
-                },
-                registro: function() {
-                    if(!this.validate()) {
-                        this.$http.post('registrar',app.alumno, function (response) {
-                            alert("Se registro con éxito a:"+response[0]);
-                            $("#form").submit();
-                        });
-                    }
+                    $("#listado tbody").html(html);
                 },
                 htmlListarSlct:function(obj,slct,tipo,valarray,afectado,afectados,slct_id,slctant,slctant_id, funciones){
                 var html="";var disabled=''; var grupo='';
@@ -479,11 +385,6 @@ Vue.config.debug = true;
                 },
             },
             ready: function(){
-                this.slctGlobalHtml("departamento,#provincia,#distrito",'simple');
-                this.slctGlobalHtml("sede,#carrera,#curso",'multiple');
-                this.mostrarSedes();
-                this.mostrarCarreras();
-                this.mostrarCursos();
-                this.mostrarDepartamentos();
+                
             },
         });
